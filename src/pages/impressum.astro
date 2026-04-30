@@ -6,221 +6,67 @@ import Layout from '../layouts/Layout.astro';
   title="Wattlyzer · Impressum"
   description="Angaben gemäß § 5 TMG — Legal notice for Wattlyzer."
 >
-  <!-- Prevent FOUC -->
   <script is:inline>
     (function () {
-      var l =
-        (typeof localStorage !== 'undefined' &&
-          localStorage.getItem('wattlyzer-lang')) ||
-        'en';
+      var l = (typeof localStorage !== 'undefined' && localStorage.getItem('wattlyzer-lang')) || 'en';
       document.documentElement.setAttribute('data-lang', l);
     })();
   </script>
 
-  <div class="topbar">
-    <a class="brand" href="/">Wattlyzer</a>
-    <div class="topbar-right">
-      <a href="/" class="back-link">← wattlyzer.app</a>
-      <div class="lang-toggle" id="lang-toggle">
-        <button class="lang-btn" data-l="en">EN</button>
-        <span class="lang-sep">·</span>
-        <button class="lang-btn" data-l="de">DE</button>
+  <div class="flex justify-between items-center px-8 py-5 border-b border-ink/10 max-[600px]:px-5 max-[600px]:py-4">
+    <a href="/" class="font-display text-[22px] font-normal tracking-[-0.01em] no-underline text-ink">Wattlyzer</a>
+    <div class="flex items-center gap-6">
+      <a href="/" class="font-sans text-[13px] text-ink/70 no-underline hover:text-ink transition-colors duration-200">← wattlyzer.app</a>
+      <div class="inline-flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-ink/[0.06] border border-ink/10" id="lang-toggle">
+        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-ink/40 font-medium hover:text-ink transition-colors duration-200" data-l="en">EN</button>
+        <span class="text-ink/20 text-[10px]">·</span>
+        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-ink/40 font-medium hover:text-ink transition-colors duration-200" data-l="de">DE</button>
       </div>
     </div>
   </div>
 
-  <main class="wrap">
-    <div class="eyebrow">§ 5 TMG</div>
-    <h1>
-      Legal <em>notice.</em>
+  <main class="max-w-[760px] mx-auto px-8 pt-20 pb-[120px] max-[600px]:px-5 max-[600px]:pt-12 max-[600px]:pb-20">
+    <div class="font-mono text-[11px] tracking-[0.22em] text-ink/55 font-medium uppercase">§ 5 TMG</div>
+    <h1 class="mt-[14px] mb-[6px] font-display font-normal text-[clamp(42px,6vw,64px)] leading-none tracking-[-0.03em] text-ink">
+      Legal <em class="italic font-light opacity-85">notice.</em>
     </h1>
-    <div class="subtitle">
+    <div class="text-[15px] text-ink/65 mt-[10px] font-sans">
       <span class="en">Information according to § 5 TMG</span>
       <span class="de">Angaben gemäß § 5 TMG</span>
     </div>
 
-    <!-- Operator -->
-    <section class="imp-section">
-      <h2><span class="en">Operator</span><span class="de">Betreiber</span></h2>
-      <p>Leon Bojanowski<br />Marienstraße 3b<br />14532 Stahnsdorf<br /><span class="en">Germany</span><span class="de">Deutschland</span></p>
+    <section class="pt-7 pb-7 border-t border-ink/[0.12] mt-12 first:mt-12">
+      <h2 class="mb-3 font-display font-normal text-[22px] leading-[1.2] tracking-[-0.01em] text-ink">
+        <span class="en">Operator</span><span class="de">Betreiber</span>
+      </h2>
+      <p class="m-0 text-[15px] leading-[1.65] text-ink/[0.78]">
+        Leon Bojanowski<br />Marienstraße 3b<br />14532 Stahnsdorf<br />
+        <span class="en">Germany</span><span class="de">Deutschland</span>
+      </p>
     </section>
 
-    <!-- Contact -->
-    <section class="imp-section">
-      <h2><span class="en">Contact</span><span class="de">Kontakt</span></h2>
-      <p>leongaborbojanowski@proton.me</p>
+    <section class="pt-7 pb-7 border-t border-ink/[0.12]">
+      <h2 class="mb-3 font-display font-normal text-[22px] leading-[1.2] tracking-[-0.01em] text-ink">
+        <span class="en">Contact</span><span class="de">Kontakt</span>
+      </h2>
+      <p class="m-0 text-[15px] leading-[1.65] text-ink/[0.78]">leongaborbojanowski@proton.me</p>
     </section>
 
-    <!-- Disclaimer -->
-    <section class="imp-section">
-      <h2><span class="en">Informational use only</span><span class="de">Nur zur Information</span></h2>
-      <p>
+    <section class="pt-7 pb-7 border-t border-ink/[0.12]">
+      <h2 class="mb-3 font-display font-normal text-[22px] leading-[1.2] tracking-[-0.01em] text-ink">
+        <span class="en">Informational use only</span><span class="de">Nur zur Information</span>
+      </h2>
+      <p class="m-0 text-[15px] leading-[1.65] text-ink/[0.78] text-pretty">
         <span class="en">Wattlyzer provides estimates and recommendation support, not guaranteed outcomes or professional advice. All calculations are presented as estimates and are not suitable for critical decisions without independent verification.</span>
         <span class="de">Wattlyzer liefert Schätzungen und Empfehlungsunterstützung, keine garantierten Ergebnisse oder professionelle Beratung. Alle Berechnungen sind Schätzwerte und nicht für kritische Entscheidungen ohne unabhängige Überprüfung geeignet.</span>
       </p>
     </section>
   </main>
 
-  <div class="foot">
+  <div class="px-8 py-8 border-t border-ink/10 text-center font-mono text-[11px] tracking-[0.1em] text-ink/50">
     © 2026 Wattlyzer · Impressum
   </div>
 </Layout>
-
-<style>
-  :root {
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-sans: 'DM Sans', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  }
-
-  body {
-    background: #f5f1ea;
-    color: #1a1410;
-  }
-
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 32px;
-    border-bottom: 1px solid rgba(26, 20, 16, 0.1);
-  }
-  .brand {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    color: #1a1410;
-  }
-  .topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .back-link {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: rgba(26, 20, 16, 0.7);
-    text-decoration: none;
-    transition: color 200ms;
-  }
-  .back-link:hover {
-    color: #1a1410;
-  }
-  .lang-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    padding: 2px 4px;
-    border-radius: 999px;
-    background: rgba(26, 20, 16, 0.06);
-    border: 1px solid rgba(26, 20, 16, 0.1);
-  }
-  .lang-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 4px 6px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(26, 20, 16, 0.4);
-    font-weight: 500;
-    transition: color 200ms;
-  }
-  .lang-btn.active {
-    color: #1a1410;
-    font-weight: 700;
-  }
-  .lang-sep {
-    color: rgba(26, 20, 16, 0.2);
-    font-size: 10px;
-  }
-
-  .wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 80px 32px 120px;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    color: rgba(26, 20, 16, 0.55);
-    font-weight: 500;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    margin: 14px 0 6px;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(42px, 6vw, 64px);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    color: #1a1410;
-  }
-  h1 em {
-    font-style: italic;
-    font-weight: 300;
-    opacity: 0.85;
-  }
-
-  .subtitle {
-    font-size: 15px;
-    color: rgba(26, 20, 16, 0.65);
-    margin-top: 10px;
-    font-family: var(--font-sans);
-  }
-
-  .imp-section {
-    padding: 28px 0;
-    border-top: 1px solid rgba(26, 20, 16, 0.12);
-    margin-top: 0;
-  }
-  .imp-section:first-of-type {
-    margin-top: 48px;
-  }
-
-  .imp-section h2 {
-    margin: 0 0 12px;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: #1a1410;
-  }
-  .imp-section p {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.65;
-    color: rgba(26, 20, 16, 0.78);
-    white-space: pre-line;
-    text-wrap: pretty;
-  }
-
-  .foot {
-    padding: 32px;
-    border-top: 1px solid rgba(26, 20, 16, 0.1);
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(26, 20, 16, 0.5);
-  }
-
-  @media (max-width: 600px) {
-    .topbar {
-      padding: 16px 20px;
-    }
-    .wrap {
-      padding: 48px 20px 80px;
-    }
-  }
-</style>
 
 <script>
   function setLang(lang: string) {
