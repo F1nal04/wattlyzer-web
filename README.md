@@ -1,14 +1,16 @@
 # wattlyzer-web
 
-Marketing website for [Wattlyzer](https://github.com/F1nal04/wattlyzer-app) — a PWA that reads the sun, the spot price, and your roof, then tells you the one best window today to run your dishwasher, heat pump, or wall box.
+Marketing website for Wattlyzer — a PWA that reads the sun, the spot price, and your roof, then tells you the one best window today to run your dishwasher, heat pump, or wall box.
 
-Built with Astro 6, plain CSS, and no client-side framework. EN/DE bilingual, animated sky hero, SSR via Netlify.
+Live at **[wattlyzer.de](https://wattlyzer.de)**. The PWA itself lives at [pwa.wattlyzer.de](https://pwa.wattlyzer.de).
+
+Built with Astro 6, plain CSS, and no client-side framework. EN/DE bilingual with URL-based routing, animated sky hero, and static output.
 
 ## Stack
 
-- [Astro 6](https://astro.build) — SSR, file-based routing
-- [@astrojs/netlify](https://docs.astro.build/en/guides/integrations-guide/netlify/) — deployment adapter
-- Fraunces · DM Sans · JetBrains Mono (Google Fonts)
+- [Astro 6](https://astro.build) — static output, file-based routing, view transitions
+- Fraunces · DM Sans · JetBrains Mono — self-hosted via Astro's font API (no Google Fonts request at runtime)
+- `@astrojs/sitemap` — auto-generated sitemap with hreflang
 
 ## Development
 
@@ -21,10 +23,10 @@ bun build         # production build → dist/
 bun preview       # preview production build locally
 ```
 
+## i18n
+
+English at `/`, German at `/de/`. Each language is a separate page file — no runtime toggle. Adding a new page requires both `src/pages/<slug>.astro` and `src/pages/de/<slug>.astro`.
+
 ## Deployment
 
-Connect the repo to Netlify. It auto-detects Astro, runs `bun run build`, and publishes `dist/`.
-
-## App
-
-The PWA this site promotes lives at [F1nal04/wattlyzer-app](https://github.com/F1nal04/wattlyzer-app).
+Static build (`dist/`) deployable to any CDN. No server adapter required.
