@@ -1,7 +1,7 @@
   :root {
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-sans: 'DM Sans', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: var(--font-fraunces), Georgia, serif;
+    --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+    --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   }
 
   body {

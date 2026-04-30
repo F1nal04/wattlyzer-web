@@ -1,8 +1,8 @@
   /* ── Variables & reset ── */
   :root {
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-sans: 'DM Sans', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-display: var(--font-fraunces), Georgia, serif;
+    --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+    --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
     --ink: #1a1410;
     --cream: #fff8e7;
     --bg-warm: #f5f1ea;
