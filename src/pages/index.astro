@@ -363,9 +363,9 @@ import Layout from '../layouts/Layout.astro';
           <div class="bullet-num">· 04</div>
           <h4 class="bullet-h">Open source</h4>
           <p class="bullet-p">
-            <span class="en">Source on GitHub, MIT licensed. Read it, fork it, host it yourself.</span
+            <span class="en">Source on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT licensed. Read it, fork it, host it yourself.</span
             ><span class="de"
-              >Quellcode auf GitHub, MIT-Lizenz. Lesen, forken, selbst hosten — alles erlaubt.</span
+              >Quellcode auf <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT-Lizenz. Lesen, forken, selbst hosten — alles erlaubt.</span
             >
           </p>
         </div>
@@ -514,11 +514,11 @@ import Layout from '../layouts/Layout.astro';
           <div class="faq-a">
             <div class="faq-a-inner">
               <span class="en"
-                >Yes. No tier, no upsell. If you want to support the project, star it on GitHub or
+                >Yes. No tier, no upsell. If you want to support the project, star it on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> or
                 send a postcard.</span
               ><span class="de"
                 >Ja. Keine Tarife, keine Upsells. Wenn du das Projekt unterstützen willst — Stern auf
-                GitHub oder eine Postkarte.</span
+                <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> oder eine Postkarte.</span
               >
             </div>
           </div>
@@ -577,9 +577,7 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">Status</a>
-          <a href="#" class="footer-link">Changelog</a>
+          <a href="https://github.com/F1nal04/wattlyzer-app" class="footer-link" target="_blank" rel="noopener">GitHub</a>
         </div>
         <div class="footer-links">
           <a href="#privacy" class="footer-link"
@@ -1335,6 +1333,19 @@ import Layout from '../layouts/Layout.astro';
   .footer-link:hover {
     color: #fff8e7;
   }
+
+  .inline-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
+    opacity: 0.8;
+    transition: opacity 200ms;
+  }
+  .inline-link:hover {
+    opacity: 1;
+  }
+
   .footer-bottom {
     padding-top: 28px;
     border-top: 1px solid rgba(255, 248, 231, 0.12);
