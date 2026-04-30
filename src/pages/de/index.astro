@@ -426,93 +426,95 @@ import '../../styles/index.css';
     return { sky: ['#2b2649', '#5b3a6a', '#8d4a6e'], mode: 'dark', sunCore: '#fff7d6', sunMid: '#ffd86b', sunOuter: '#ff9a3c' };
   }
 
-  let hourIdx = 0;
+  document.addEventListener('astro:page-load', () => {
+    let hourIdx = 0;
 
-  const hero = document.getElementById('hero')!;
-  const nav = document.getElementById('nav')!;
-  const heroSun = document.getElementById('hero-sun') as HTMLElement;
-  const heroMoon = document.getElementById('hero-moon') as HTMLElement;
-  const hourStripTime = document.getElementById('hour-strip-time')!;
-  const hourDots = document.querySelectorAll<HTMLElement>('.hour-dot');
+    const hero = document.getElementById('hero')!;
+    const nav = document.getElementById('nav')!;
+    const heroSun = document.getElementById('hero-sun') as HTMLElement;
+    const heroMoon = document.getElementById('hero-moon') as HTMLElement;
+    const hourStripTime = document.getElementById('hour-strip-time')!;
+    const hourDots = document.querySelectorAll<HTMLElement>('.hour-dot');
 
-  function updateSky(hour: number) {
-    const t = skyTheme(hour);
-    const [c1, c2, c3] = t.sky;
+    function updateSky(hour: number) {
+      const t = skyTheme(hour);
+      const [c1, c2, c3] = t.sky;
 
-    hero.style.setProperty('--sky-c1', c1);
-    hero.style.setProperty('--sky-c2', c2);
-    hero.style.setProperty('--sky-c3', c3);
-    hero.setAttribute('data-sky-mode', t.mode);
-    nav.setAttribute('data-sky-mode', t.mode);
+      hero.style.setProperty('--sky-c1', c1);
+      hero.style.setProperty('--sky-c2', c2);
+      hero.style.setProperty('--sky-c3', c3);
+      hero.setAttribute('data-sky-mode', t.mode);
+      nav.setAttribute('data-sky-mode', t.mode);
 
-    const showSun = hour >= 6 && hour <= 19;
-    const sunX = Math.max(0.05, Math.min(0.95, (hour - 6) / 14));
-    const sunY = 1 - Math.sin(Math.PI * Math.max(0, Math.min(1, (hour - 6) / 14)));
-    if (showSun) {
-      heroSun.style.opacity = '0.96';
-      heroSun.style.left = `calc(${sunX * 100}% - 90px)`;
-      heroSun.style.top = `calc(${10 + sunY * 25}% - 90px)`;
-      heroSun.style.background = `radial-gradient(circle, ${t.sunCore} 0%, ${t.sunMid} 45%, ${t.sunOuter} 75%, rgba(255,154,60,0) 100%)`;
-      heroSun.style.boxShadow = `0 0 120px 30px ${t.sunMid}66`;
-      heroMoon.style.opacity = '0';
-    } else {
-      heroSun.style.opacity = '0';
-      heroMoon.style.opacity = '1';
-      heroMoon.style.left = `calc(${sunX * 100}% - 56px)`;
+      const showSun = hour >= 6 && hour <= 19;
+      const sunX = Math.max(0.05, Math.min(0.95, (hour - 6) / 14));
+      const sunY = 1 - Math.sin(Math.PI * Math.max(0, Math.min(1, (hour - 6) / 14)));
+      if (showSun) {
+        heroSun.style.opacity = '0.96';
+        heroSun.style.left = `calc(${sunX * 100}% - 90px)`;
+        heroSun.style.top = `calc(${10 + sunY * 25}% - 90px)`;
+        heroSun.style.background = `radial-gradient(circle, ${t.sunCore} 0%, ${t.sunMid} 45%, ${t.sunOuter} 75%, rgba(255,154,60,0) 100%)`;
+        heroSun.style.boxShadow = `0 0 120px 30px ${t.sunMid}66`;
+        heroMoon.style.opacity = '0';
+      } else {
+        heroSun.style.opacity = '0';
+        heroMoon.style.opacity = '1';
+        heroMoon.style.left = `calc(${sunX * 100}% - 56px)`;
+      }
+
+      hourStripTime.textContent = String(hour).padStart(2, '0') + ':00';
+      hourDots.forEach((dot, i) => {
+        dot.classList.toggle('active', SKY_HOURS[i] === hour);
+      });
+
+      const mobContent = document.getElementById('mob-sheet-content');
+      if (mobContent) mobContent.setAttribute('data-sky-mode', t.mode);
     }
 
-    hourStripTime.textContent = String(hour).padStart(2, '0') + ':00';
-    hourDots.forEach((dot, i) => {
-      dot.classList.toggle('active', SKY_HOURS[i] === hour);
-    });
+    function tick() {
+      updateSky(SKY_HOURS[hourIdx]);
+      hourIdx = (hourIdx + 1) % SKY_HOURS.length;
+    }
+    tick();
+    const skyInterval = setInterval(tick, 4400);
+    document.addEventListener('astro:before-swap', () => clearInterval(skyInterval), { once: true });
 
-    const mobContent = document.getElementById('mob-sheet-content');
-    if (mobContent) mobContent.setAttribute('data-sky-mode', t.mode);
-  }
-
-  function tick() {
-    updateSky(SKY_HOURS[hourIdx]);
-    hourIdx = (hourIdx + 1) % SKY_HOURS.length;
-  }
-  tick();
-  const skyInterval = setInterval(tick, 4400);
-  document.addEventListener('astro:before-swap', () => clearInterval(skyInterval), { once: true });
-
-  // ── FAQ Accordion ──
-  document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest<HTMLElement>('.faq-item')!;
-      const isOpen = item.dataset.open === 'true';
-      document.querySelectorAll<HTMLElement>('.faq-item').forEach((el) => {
-        el.dataset.open = 'false';
-        el.querySelector('button')?.setAttribute('aria-expanded', 'false');
+    // ── FAQ Accordion ──
+    document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest<HTMLElement>('.faq-item')!;
+        const isOpen = item.dataset.open === 'true';
+        document.querySelectorAll<HTMLElement>('.faq-item').forEach((el) => {
+          el.dataset.open = 'false';
+          el.querySelector('button')?.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.dataset.open = 'true';
+          btn.setAttribute('aria-expanded', 'true');
+        }
       });
-      if (!isOpen) {
-        item.dataset.open = 'true';
-        btn.setAttribute('aria-expanded', 'true');
-      }
     });
-  });
 
-  // ── Mobile menu ──
-  const mobSheet = document.getElementById('mob-sheet')!;
-  const mobHam = document.getElementById('mob-ham')!;
-  const mobOverlay = document.getElementById('mob-overlay')!;
-  const mobClose = document.getElementById('mob-sheet-close')!;
+    // ── Mobile menu ──
+    const mobSheet = document.getElementById('mob-sheet')!;
+    const mobHam = document.getElementById('mob-ham')!;
+    const mobOverlay = document.getElementById('mob-overlay')!;
+    const mobClose = document.getElementById('mob-sheet-close')!;
 
-  function openMenu() {
-    mobSheet.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    mobSheet.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
+    function openMenu() {
+      mobSheet.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobSheet.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
 
-  mobHam.addEventListener('click', openMenu);
-  mobClose.addEventListener('click', closeMenu);
-  mobOverlay.addEventListener('click', closeMenu);
-  document.querySelectorAll('.mob-nav-link, .mob-cta').forEach((el) => {
-    el.addEventListener('click', closeMenu);
+    mobHam.addEventListener('click', openMenu);
+    mobClose.addEventListener('click', closeMenu);
+    mobOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mob-nav-link, .mob-cta').forEach((el) => {
+      el.addEventListener('click', closeMenu);
+    });
   });
 </script>
