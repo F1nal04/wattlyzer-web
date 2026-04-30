@@ -1,9 +1,18 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+  site: "https://wattlyzer.de",
   output: "static",
-  integrations: [],
+  integrations: [sitemap()],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "de"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   fonts: [
     {
       provider: fontProviders.google(),

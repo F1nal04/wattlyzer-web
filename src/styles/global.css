@@ -34,10 +34,3 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Bilingual toggle — driven by data-lang on <html> */
-  [data-lang='de'] .en {
-    display: none;
-  }
-  [data-lang='en'] .de {
-    display: none;
-  }

@@ -59,6 +59,8 @@
     color: rgba(26, 20, 16, 0.4);
     font-weight: 500;
     transition: color 200ms;
+    text-decoration: none;
+    display: inline-block;
   }
   .lang-btn.active {
     color: #1a1410;

@@ -1,33 +1,37 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '../styles/index.css';
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/index.css';
 ---
 
-<Layout canonicalPath="/">
+<Layout
+  title="Wattlyzer · Lass es laufen, wenn der Himmel es sagt."
+  description="Wattlyzer liest die Sonne, den Spotpreis und dein Dach — und nennt dir das eine beste Fenster heute, um Spülmaschine, Wärmepumpe oder Wallbox zu starten."
+  canonicalPath="/"
+>
   <!-- ── NAV ── -->
   <nav class="nav" id="nav" data-sky-mode="light">
     <div class="nav-left">
       <a href="#top" class="nav-logo">Wattlyzer</a>
       <span class="nav-div"></span>
-      <a href="#how" class="nav-link">How it works</a>
-      <a href="#privacy" class="nav-link">Privacy</a>
+      <a href="#how" class="nav-link">So funktioniert's</a>
+      <a href="#privacy" class="nav-link">Datenschutz</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
     <div class="nav-right">
       <div class="lang-toggle">
-        <a class="lang-btn active" href="/">EN</a>
+        <a class="lang-btn" href="/">EN</a>
         <span class="lang-sep">·</span>
-        <a class="lang-btn" href="/de/">DE</a>
+        <a class="lang-btn active" href="/de/">DE</a>
       </div>
-      <a href="#install" class="nav-cta">Install PWA</a>
+      <a href="#install" class="nav-cta">PWA installieren</a>
     </div>
     <div class="nav-mob-right">
       <div class="lang-toggle lang-toggle-mob">
-        <a class="lang-btn active" href="/">EN</a>
+        <a class="lang-btn" href="/">EN</a>
         <span class="lang-sep">·</span>
-        <a class="lang-btn" href="/de/">DE</a>
+        <a class="lang-btn active" href="/de/">DE</a>
       </div>
-      <button class="mob-ham" id="mob-ham" aria-label="Menu">
+      <button class="mob-ham" id="mob-ham" aria-label="Menü">
         <svg
           width="16"
           height="16"
@@ -66,17 +70,17 @@ import '../styles/index.css';
           <span class="hour-strip-time" id="hour-strip-time">07:00</span>
         </div>
 
-        <div class="hero-eyebrow">FOR GERMAN SOLAR HOMES</div>
+        <div class="hero-eyebrow">FÜR DEUTSCHE SOLARHAUSHALTE</div>
 
         <h1 class="hero-h1">
-          Run it
+          Lass es laufen,
           <br />
-          <em class="hero-h1b">when the sky says so.</em>
+          <em class="hero-h1b">wenn der Himmel es sagt.</em>
         </h1>
 
         <p class="hero-sub">
-          Wattlyzer reads the sun, the spot price, and your roof — then tells you the one best
-          window today to start the dishwasher, the heat pump, the wall box.
+          Wattlyzer liest die Sonne, den Spotpreis und dein Dach — und nennt dir das eine beste
+          Fenster heute, um Spülmaschine, Wärmepumpe oder Wallbox zu starten.
         </p>
 
         <div class="hero-cta-row" id="install">
@@ -94,9 +98,9 @@ import '../styles/index.css';
               <path d="M12 4v12m0 0l-4-4m4 4l4-4"></path>
               <path d="M5 20h14"></path>
             </svg>
-            Install the PWA
+            PWA installieren
           </a>
-          <span class="hero-cta-sub">Free · no account</span>
+          <span class="hero-cta-sub">Kostenlos · ohne Konto</span>
         </div>
       </div>
     </div>
@@ -112,13 +116,13 @@ import '../styles/index.css';
     <div class="how-inner">
       <div class="how-header">
         <div>
-          <div class="eyebrow">HOW IT WORKS</div>
+          <div class="eyebrow">SO FUNKTIONIERT'S</div>
           <h2 class="section-h2">
-            Three signals,
-            <span class="section-h2-italic"> one window.</span>
+            Drei Signale,
+            <span class="section-h2-italic"> ein Fenster.</span>
           </h2>
         </div>
-        <p class="section-sub">No dashboards. No graphs to read. Just the hour you should press start.</p>
+        <p class="section-sub">Kein Dashboard. Keine Diagramme. Nur die Stunde, in der du Start drückst.</p>
       </div>
 
       <div class="step-cards">
@@ -156,8 +160,8 @@ import '../styles/index.css';
             </svg>
           </div>
           <div class="step-num">01</div>
-          <h3 class="step-h">We read the sky.</h3>
-          <p class="step-p">Hour-by-hour solar forecast for your roof — pitch, azimuth, kWp and shading included.</p>
+          <h3 class="step-h">Wir lesen den Himmel.</h3>
+          <p class="step-p">Stündliche Solarprognose für dein Dach — Neigung, Ausrichtung, kWp und Verschattung inklusive.</p>
         </div>
 
         <div class="step-card">
@@ -176,8 +180,8 @@ import '../styles/index.css';
             </svg>
           </div>
           <div class="step-num">02</div>
-          <h3 class="step-h">We read the price.</h3>
-          <p class="step-p">Dynamic spot tariffs (Tibber, aWATTar, Octopus) pulled fresh four times an hour.</p>
+          <h3 class="step-h">Wir lesen den Preis.</h3>
+          <p class="step-p">Dynamische Spot-Tarife (Tibber, aWATTar, Octopus) — viermal pro Stunde frisch geholt.</p>
         </div>
 
         <div class="step-card">
@@ -213,8 +217,8 @@ import '../styles/index.css';
             </svg>
           </div>
           <div class="step-num">03</div>
-          <h3 class="step-h">We pick the hour.</h3>
-          <p class="step-p">One window. Sunniest, cheapest, or balanced — your call. Slide for duration, done.</p>
+          <h3 class="step-h">Wir wählen die Stunde.</h3>
+          <p class="step-p">Ein Fenster. Sonnigster, günstigster oder ausgewogener Modus — du entscheidest. Laufzeit-Slider, fertig.</p>
         </div>
       </div>
     </div>
@@ -225,40 +229,40 @@ import '../styles/index.css';
     <div class="privacy-inner">
       <div class="privacy-header">
         <div>
-          <div class="eyebrow eyebrow-light">PRIVACY</div>
+          <div class="eyebrow eyebrow-light">DATENSCHUTZ</div>
           <h2 class="section-h2 section-h2-light">
-            Runs on your phone.
+            Läuft auf deinem Gerät.
             <br />
-            <span class="section-h2-italic opacity-85">Stays on your phone.</span>
+            <span class="section-h2-italic opacity-85">Bleibt auf deinem Gerät.</span>
           </h2>
         </div>
         <p class="section-sub section-sub-light">
-          Wattlyzer is a Progressive Web App. Forecasts and prices are fetched directly from
-          public APIs. Your roof setup never leaves the device. No account, no tracker, no
-          analytics SDK.
+          Wattlyzer ist eine Progressive Web App. Wetter und Preise kommen direkt aus öffentlichen
+          APIs. Deine Dachkonfiguration verlässt das Gerät nicht. Kein Konto, kein Tracker, kein
+          Analytics-SDK.
         </p>
       </div>
 
       <div class="privacy-bullets">
         <div class="privacy-bullet">
           <div class="bullet-num">· 01</div>
-          <h4 class="bullet-h">No account</h4>
-          <p class="bullet-p">Configure your roof, you're done. There is nothing to log into.</p>
+          <h4 class="bullet-h">Kein Konto</h4>
+          <p class="bullet-p">Dach konfigurieren, fertig. Es gibt nichts, wo du dich einloggen müsstest.</p>
         </div>
         <div class="privacy-bullet">
           <div class="bullet-num">· 02</div>
-          <h4 class="bullet-h">No tracking</h4>
-          <p class="bullet-p">No analytics, no pixels, no cookies. Open the network tab and check.</p>
+          <h4 class="bullet-h">Kein Tracking</h4>
+          <p class="bullet-p">Keine Analytics, keine Pixel, keine Cookies. Network-Tab öffnen und nachsehen.</p>
         </div>
         <div class="privacy-bullet">
           <div class="bullet-num">· 03</div>
           <h4 class="bullet-h">Local first</h4>
-          <p class="bullet-p">Tariffs and forecasts cached on-device.</p>
+          <p class="bullet-p">Tarife und Prognosen lokal gecached.</p>
         </div>
         <div class="privacy-bullet">
           <div class="bullet-num">· 04</div>
           <h4 class="bullet-h">Open source</h4>
-          <p class="bullet-p">Source on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT licensed. Read it, fork it, host it yourself.</p>
+          <p class="bullet-p">Quellcode auf <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT-Lizenz. Lesen, forken, selbst hosten — alles erlaubt.</p>
         </div>
       </div>
     </div>
@@ -270,14 +274,14 @@ import '../styles/index.css';
       <div class="faq-header">
         <div class="eyebrow">FAQ</div>
         <h2 class="section-h2">
-          <em class="section-h2-italic">Common questions.</em>
+          <em class="section-h2-italic">Häufige Fragen.</em>
         </h2>
       </div>
 
       <div class="faq-list">
         <div class="faq-item" data-open="false">
           <button class="faq-q">
-            <span class="faq-q-text">Which tariffs are supported?</span>
+            <span class="faq-q-text">Welche Tarife werden unterstützt?</span>
             <span class="faq-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M12 5v14M5 12h14"></path>
@@ -285,13 +289,13 @@ import '../styles/index.css';
             </span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Any dynamic electricity tariff that exposes hourly spot prices. Fixed-rate contracts cannot be optimized — there is nothing to compare.</div>
+            <div class="faq-a-inner">Jeder dynamische Stromtarif, der stündliche Spotpreise bereitstellt. Festpreisverträge lassen sich nicht optimieren — es gibt nichts zu vergleichen.</div>
           </div>
         </div>
 
         <div class="faq-item" data-open="false">
           <button class="faq-q">
-            <span class="faq-q-text">Do I need a smart meter?</span>
+            <span class="faq-q-text">Brauche ich ein Smart Meter?</span>
             <span class="faq-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M12 5v14M5 12h14"></path>
@@ -299,13 +303,13 @@ import '../styles/index.css';
             </span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">No. Wattlyzer recommends a window — you start the appliance. We never touch your meter or your inverter.</div>
+            <div class="faq-a-inner">Nein. Wattlyzer empfiehlt nur ein Fenster — du startest das Gerät selbst. Wir greifen weder auf Zähler noch auf Wechselrichter zu.</div>
           </div>
         </div>
 
         <div class="faq-item" data-open="false">
           <button class="faq-q">
-            <span class="faq-q-text">How accurate is the solar forecast?</span>
+            <span class="faq-q-text">Wie genau ist die Solarprognose?</span>
             <span class="faq-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M12 5v14M5 12h14"></path>
@@ -313,13 +317,13 @@ import '../styles/index.css';
             </span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">We use the forecast.solar API with your roof's location, tilt, azimuth, and installed kWp. Accuracy depends on local weather conditions.</div>
+            <div class="faq-a-inner">Wir nutzen die forecast.solar API mit Standort, Neigung, Ausrichtung und installierter kWp deines Dachs. Die Genauigkeit hängt von den lokalen Wetterbedingungen ab.</div>
           </div>
         </div>
 
         <div class="faq-item" data-open="false">
           <button class="faq-q">
-            <span class="faq-q-text">Is it really free?</span>
+            <span class="faq-q-text">Ist es wirklich kostenlos?</span>
             <span class="faq-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M12 5v14M5 12h14"></path>
@@ -327,13 +331,13 @@ import '../styles/index.css';
             </span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Yes. No tier, no upsell. If you want to support the project, star it on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> or send a postcard.</div>
+            <div class="faq-a-inner">Ja. Keine Tarife, keine Upsells. Wenn du das Projekt unterstützen willst — Stern auf <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> oder eine Postkarte.</div>
           </div>
         </div>
 
         <div class="faq-item" data-open="false">
           <button class="faq-q">
-            <span class="faq-q-text">Why a PWA and not the App Store?</span>
+            <span class="faq-q-text">Warum eine PWA und kein App Store?</span>
             <span class="faq-icon">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M12 5v14M5 12h14"></path>
@@ -341,7 +345,7 @@ import '../styles/index.css';
             </span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Because the App Store would slow shipping, take a cut, and demand an account system we do not need. The PWA installs in two taps from Safari or Chrome.</div>
+            <div class="faq-a-inner">Weil der App Store das Ausliefern verlangsamt, eine Provision nimmt und einen Account-Zwang bedeutet, den wir nicht brauchen. Die PWA installiert sich in zwei Taps aus Safari oder Chrome.</div>
           </div>
         </div>
 
@@ -356,23 +360,23 @@ import '../styles/index.css';
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">Wattlyzer</div>
-          <p class="footer-tagline">Made in Berlin for German rooftops.</p>
+          <p class="footer-tagline">Made in Berlin, für deutsche Dächer.</p>
         </div>
         <div class="footer-links">
           <a href="https://github.com/F1nal04/wattlyzer-app" class="footer-link" target="_blank" rel="noopener">GitHub</a>
         </div>
         <div class="footer-links">
-          <a href="#privacy" class="footer-link">Privacy</a>
-          <a href="/legal/" class="footer-link">Legal notice</a>
+          <a href="#privacy" class="footer-link">Datenschutz</a>
+          <a href="/de/legal/" class="footer-link">Impressum</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Wattlyzer. MIT licensed.</span>
+        <span class="footer-copy">© 2026 Wattlyzer. MIT-Lizenz.</span>
         <div class="footer-lang">
-          <a class="footer-lang-btn active" href="/">EN</a>
+          <a class="footer-lang-btn" href="/">EN</a>
           <span>·</span>
-          <a class="footer-lang-btn" href="/de/">DE</a>
+          <a class="footer-lang-btn active" href="/de/">DE</a>
         </div>
       </div>
     </div>
@@ -383,17 +387,17 @@ import '../styles/index.css';
     <div class="mob-sheet-overlay" id="mob-overlay"></div>
     <div class="mob-sheet-content" id="mob-sheet-content">
       <div class="mob-sheet-close-row">
-        <button class="mob-sheet-close" id="mob-sheet-close" aria-label="Close">
+        <button class="mob-sheet-close" id="mob-sheet-close" aria-label="Schließen">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M6 6l12 12M18 6L6 18"></path>
           </svg>
         </button>
       </div>
-      <a href="#how" class="mob-nav-link" id="mob-link-how">How it works</a>
-      <a href="#privacy" class="mob-nav-link" id="mob-link-privacy">Privacy</a>
+      <a href="#how" class="mob-nav-link" id="mob-link-how">So funktioniert's</a>
+      <a href="#privacy" class="mob-nav-link" id="mob-link-privacy">Datenschutz</a>
       <a href="#faq" class="mob-nav-link" id="mob-link-faq">FAQ</a>
-      <a href="/legal/" class="mob-nav-link" id="mob-link-imp">Legal notice</a>
-      <a href="#install" class="mob-cta" id="mob-cta">Install PWA</a>
+      <a href="/de/legal/" class="mob-nav-link" id="mob-link-imp">Impressum</a>
+      <a href="#install" class="mob-cta" id="mob-cta">PWA installieren</a>
     </div>
   </div>
 </Layout>

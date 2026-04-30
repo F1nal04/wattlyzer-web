@@ -96,6 +96,8 @@
     opacity: 0.5;
     font-weight: 500;
     transition: opacity 200ms;
+    text-decoration: none;
+    display: inline-block;
   }
   .lang-btn.active,
   .lang-btn:focus-visible {
@@ -733,6 +735,8 @@
     letter-spacing: 0.1em;
     font-weight: 500;
     transition: color 200ms;
+    text-decoration: none;
+    display: inline-block;
   }
   .footer-lang-btn.active {
     color: #fff8e7;
