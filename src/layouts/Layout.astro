@@ -1,6 +1,4 @@
 ---
-import '../styles/global.css';
-
 interface Props {
   title?: string;
   description?: string;
@@ -28,7 +26,53 @@ const {
       rel="stylesheet"
     />
   </head>
-  <body class="bg-warm font-sans text-ink m-0 p-0">
+  <body>
     <slot />
   </body>
 </html>
+
+<style is:global>
+  @property --sky-c1 {
+    syntax: '<color>';
+    initial-value: #bde4ff;
+    inherits: true;
+  }
+  @property --sky-c2 {
+    syntax: '<color>';
+    initial-value: #fef0c7;
+    inherits: true;
+  }
+  @property --sky-c3 {
+    syntax: '<color>';
+    initial-value: #fcd28a;
+    inherits: true;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #1a1410;
+    background: #f5f1ea;
+  }
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Bilingual toggle — driven by data-lang on <html> */
+  [data-lang='de'] .en {
+    display: none;
+  }
+  [data-lang='en'] .de {
+    display: none;
+  }
+</style>

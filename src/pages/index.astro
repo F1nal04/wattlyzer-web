@@ -3,48 +3,57 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+  <!-- Prevent FOUC: set lang before first paint -->
   <script is:inline>
     (function () {
-      var l = (typeof localStorage !== 'undefined' && localStorage.getItem('wattlyzer-lang')) || 'en';
+      var l =
+        (typeof localStorage !== 'undefined' &&
+          localStorage.getItem('wattlyzer-lang')) ||
+        'en';
       document.documentElement.setAttribute('data-lang', l);
     })();
   </script>
 
   <!-- ── NAV ── -->
-  <nav
-    class="absolute top-0 left-0 right-0 z-20 px-8 py-[22px] flex items-center justify-between gap-4 transition-colors duration-[1200ms] nav"
-    id="nav"
-    data-sky-mode="light"
-  >
-    <div class="flex items-center gap-6 flex-nowrap whitespace-nowrap">
-      <a href="#top" class="nav-logo font-display text-[22px] font-normal tracking-[-0.01em] no-underline transition-colors duration-[1200ms]">Wattlyzer</a>
-      <span class="inline-block w-px h-[18px] bg-current opacity-20 shrink-0"></span>
-      <a href="#how" class="font-sans text-[13px] font-medium no-underline py-2 px-1 opacity-[0.82] hover:opacity-100 transition-opacity duration-200 max-[900px]:hidden">
-        <span class="en">How it works</span><span class="de">So funktioniert's</span>
-      </a>
-      <a href="#privacy" class="font-sans text-[13px] font-medium no-underline py-2 px-1 opacity-[0.82] hover:opacity-100 transition-opacity duration-200 max-[900px]:hidden">
-        <span class="en">Privacy</span><span class="de">Datenschutz</span>
-      </a>
-      <a href="#faq" class="font-sans text-[13px] font-medium no-underline py-2 px-1 opacity-[0.82] hover:opacity-100 transition-opacity duration-200 max-[900px]:hidden">FAQ</a>
+  <nav class="nav" id="nav" data-sky-mode="light">
+    <div class="nav-left">
+      <a href="#top" class="nav-logo">Wattlyzer</a>
+      <span class="nav-div"></span>
+      <a href="#how" class="nav-link"
+        ><span class="en">How it works</span><span class="de">So funktioniert's</span></a
+      >
+      <a href="#privacy" class="nav-link"
+        ><span class="en">Privacy</span><span class="de">Datenschutz</span></a
+      >
+      <a href="#faq" class="nav-link">FAQ</a>
     </div>
-    <div class="flex items-center gap-4 flex-nowrap whitespace-nowrap max-[900px]:hidden" id="nav-right">
-      <div class="lang-toggle inline-flex items-center gap-0.5 px-1 py-0.5 rounded-full border transition-[background,border-color] duration-[1200ms]" id="lang-toggle">
-        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-current opacity-50 font-medium transition-opacity duration-200 hover:opacity-100" data-l="en">EN</button>
-        <span class="opacity-30 text-[10px]">·</span>
-        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-current opacity-50 font-medium transition-opacity duration-200 hover:opacity-100" data-l="de">DE</button>
+    <div class="nav-right">
+      <div class="lang-toggle" id="lang-toggle">
+        <button class="lang-btn" data-l="en">EN</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-l="de">DE</button>
       </div>
-      <a href="#install" class="nav-cta px-4 py-[10px] rounded-full font-sans text-[13px] font-semibold no-underline tracking-[0.01em] shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-[background,color] duration-[1200ms] whitespace-nowrap">
-        <span class="en">Install PWA</span><span class="de">PWA installieren</span>
-      </a>
+      <a href="#install" class="nav-cta"
+        ><span class="en">Install PWA</span><span class="de">PWA installieren</span></a
+      >
     </div>
-    <div class="hidden max-[900px]:flex items-center gap-[10px]" id="nav-mob-right">
-      <div class="lang-toggle inline-flex items-center gap-0.5 px-1 py-0.5 rounded-full border transition-[background,border-color] duration-[1200ms]" id="lang-toggle-mob">
-        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-current opacity-50 font-medium" data-l="en">EN</button>
-        <span class="opacity-30 text-[10px]">·</span>
-        <button class="lang-btn bg-transparent border-none cursor-pointer px-[6px] py-1 font-mono text-[11px] tracking-[0.1em] text-current opacity-50 font-medium" data-l="de">DE</button>
+    <!-- Mobile: lang + hamburger -->
+    <div class="nav-mob-right">
+      <div class="lang-toggle lang-toggle-mob" id="lang-toggle-mob">
+        <button class="lang-btn" data-l="en">EN</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-l="de">DE</button>
       </div>
-      <button class="mob-ham w-9 h-9 rounded-full p-0 border cursor-pointer inline-flex items-center justify-center transition-[background,border-color] duration-[1200ms] text-current" id="mob-ham" aria-label="Menu">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <button class="mob-ham" id="mob-ham" aria-label="Menu">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
           <line x1="4" y1="7" x2="20" y2="7"></line>
           <line x1="4" y1="13" x2="20" y2="13"></line>
           <line x1="4" y1="19" x2="20" y2="19"></line>
@@ -54,14 +63,11 @@ import Layout from '../layouts/Layout.astro';
   </nav>
 
   <!-- ── HERO ── -->
-  <section
-    class="hero-bg relative w-full min-h-screen overflow-hidden flex items-center"
-    id="hero"
-    data-sky-mode="light"
-  >
+  <section class="hero" id="hero" data-sky-mode="light">
     <div id="top"></div>
 
-    <div class="absolute inset-0 pointer-events-none z-[1]" aria-hidden="true">
+    <!-- Sky layer -->
+    <div class="hero-sky" aria-hidden="true">
       <div id="hero-sun" class="hero-sun"></div>
       <div id="hero-moon" class="hero-moon"></div>
       <div class="hero-cloud cloud-1" id="hc1"></div>
@@ -69,82 +75,122 @@ import Layout from '../layouts/Layout.astro';
       <div class="hero-hills" id="hero-hills"></div>
     </div>
 
-    <div class="relative z-[5] w-full max-w-[800px] mx-auto px-20 pt-[120px] pb-[100px] max-[900px]:px-[22px] max-[900px]:pt-20 max-[900px]:pb-[60px]">
-      <div class="sky-text">
-        <div class="inline-flex items-center gap-2 px-3 py-[6px] rounded-full bg-white/10 backdrop-blur-md border border-white/[0.18] font-mono text-[11px] tracking-[0.14em] mb-[18px]" id="hour-strip">
-          <div class="inline-flex gap-1">
-            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-              <span class="hour-dot w-[5px] h-[5px] rounded-full bg-current opacity-25 transition-opacity duration-[600ms] inline-block" data-idx={i}></span>
-            ))}
+    <!-- Two-column content -->
+    <div class="hero-content">
+      <!-- Left: text -->
+      <div class="hero-text">
+        <!-- Hour strip -->
+        <div class="hour-strip" id="hour-strip">
+          <div class="hour-dots">
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => <span class="hour-dot" data-idx={i}></span>)}
           </div>
-          <span id="hour-strip-time">07:00</span>
+          <span class="hour-strip-time" id="hour-strip-time">07:00</span>
         </div>
 
-        <div class="font-mono text-[11px] tracking-[0.22em] font-medium opacity-65 mb-4">
+        <div class="hero-eyebrow">
           <span class="en">FOR GERMAN SOLAR HOMES</span><span class="de">FÜR DEUTSCHE SOLARHAUSHALTE</span>
         </div>
 
-        <h1 class="m-0 font-display font-normal text-[clamp(56px,6.1vw,88px)] leading-[0.96] tracking-[-0.035em] text-balance text-current max-[900px]:text-[clamp(44px,13vw,64px)]">
+        <h1 class="hero-h1">
           <span class="en">Run it</span><span class="de">Lass es laufen,</span>
           <br />
-          <em class="not-italic font-light opacity-[0.92]">
+          <em class="hero-h1b">
             <span class="en">when the sky says so.</span><span class="de">wenn der Himmel es sagt.</span>
           </em>
         </h1>
 
-        <p class="mt-[26px] max-w-[480px] text-[17px] leading-[1.55] opacity-[0.82] text-pretty max-[900px]:text-[15.5px]">
-          <span class="en">Wattlyzer reads the sun, the spot price, and your roof — then tells you the one best window today to start the dishwasher, the heat pump, the wall box.</span
-          ><span class="de">Wattlyzer liest die Sonne, den Spotpreis und dein Dach — und nennt dir das eine beste Fenster heute, um Spülmaschine, Wärmepumpe oder Wallbox zu starten.</span>
+        <p class="hero-sub">
+          <span class="en"
+            >Wattlyzer reads the sun, the spot price, and your roof — then tells you the one best
+            window today to start the dishwasher, the heat pump, the wall box.</span
+          ><span class="de"
+            >Wattlyzer liest die Sonne, den Spotpreis und dein Dach — und nennt dir das eine beste
+            Fenster heute, um Spülmaschine, Wärmepumpe oder Wallbox zu starten.</span
+          >
         </p>
 
-        <div class="mt-9 flex items-center gap-[18px] flex-wrap max-[480px]:flex-col max-[480px]:items-start max-[480px]:gap-3" id="install">
-          <a href="#" class="hero-cta-btn inline-flex items-center gap-[10px] px-[26px] py-4 rounded-full font-sans text-[15px] font-semibold no-underline tracking-[0.01em] shadow-[0_12px_32px_rgba(20,16,30,0.28)] whitespace-nowrap" id="hero-cta-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="hero-cta-row" id="install">
+          <a href="#" class="hero-cta-btn" id="hero-cta-btn">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M12 4v12m0 0l-4-4m4 4l4-4"></path>
               <path d="M5 20h14"></path>
             </svg>
             <span class="en">Install the PWA</span><span class="de">PWA installieren</span>
           </a>
-          <span class="font-mono text-[11px] tracking-[0.1em] opacity-60">
-            <span class="en">Free · no account</span><span class="de">Kostenlos · ohne Konto</span>
+          <span class="hero-cta-sub">
+            <span class="en">Free · no account</span><span class="de"
+              >Kostenlos · ohne Konto</span
+            >
           </span>
         </div>
       </div>
+
     </div>
 
-    <div class="hero-scroll absolute bottom-7 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.22em] opacity-55 flex flex-col items-center gap-2 z-[5]" aria-hidden="true">
+    <!-- Scroll cue -->
+    <div class="hero-scroll" aria-hidden="true">
       SCROLL
-      <span class="w-px h-8 bg-current opacity-70"></span>
+      <span class="hero-scroll-line"></span>
     </div>
   </section>
 
   <!-- ── HOW IT WORKS ── -->
-  <section class="bg-warm text-ink py-[140px] px-20 font-sans max-[900px]:py-[72px] max-[900px]:px-[22px]" id="how">
-    <div class="max-w-[1240px] mx-auto">
-      <div class="grid grid-cols-2 gap-20 items-end mb-20 max-[900px]:grid-cols-1 max-[900px]:gap-5 max-[900px]:mb-8">
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="how-header">
         <div>
-          <div class="font-mono text-[11px] tracking-[0.22em] text-ink/55 font-medium">
+          <div class="eyebrow">
             <span class="en">HOW IT WORKS</span><span class="de">SO FUNKTIONIERT'S</span>
           </div>
-          <h2 class="mt-4 mb-0 font-display font-normal text-[clamp(42px,4.4vw,64px)] leading-none tracking-[-0.03em] text-balance">
+          <h2 class="section-h2">
             <span class="en">Three signals,</span><span class="de">Drei Signale,</span>
-            <em class="not-italic font-light"><span class="en"> one window.</span><span class="de"> ein Fenster.</span></em>
+            <span class="section-h2-italic"
+              ><span class="en"> one window.</span><span class="de"> ein Fenster.</span></span
+            >
           </h2>
         </div>
-        <p class="text-[17px] leading-[1.55] text-ink/[0.72] m-0 max-w-[460px] text-pretty">
+        <p class="section-sub">
           <span class="en">No dashboards. No graphs to read. Just the hour you should press start.</span
-          ><span class="de">Kein Dashboard. Keine Diagramme. Nur die Stunde, in der du Start drückst.</span>
+          ><span class="de"
+            >Kein Dashboard. Keine Diagramme. Nur die Stunde, in der du Start drückst.</span
+          >
         </p>
       </div>
 
-      <div class="grid grid-cols-3 gap-8 max-[900px]:grid-cols-1 max-[900px]:gap-4">
-        <div class="flex flex-col gap-4 min-h-[240px] p-8 pb-9 bg-white rounded-[22px] border border-ink/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_24px_48px_-28px_rgba(20,16,30,0.18)]">
-          <div class="w-full h-16">
+      <div class="step-cards">
+        <!-- Step 01 -->
+        <div class="step-card">
+          <div class="step-illus">
             <svg viewBox="0 0 240 64" width="100%" height="64" style="display:block">
-              <path d="M 10 56 Q 120 -10 230 56" fill="none" stroke="#1a1410" stroke-width="1" opacity="0.25" stroke-dasharray="2 4"></path>
-              {[10, 60, 110, 160, 210].map((x) => (
-                <line x1={x} y1="56" x2={x} y2="60" stroke="#1a1410" opacity="0.4" stroke-width="1" />
-              ))}
+              <path
+                d="M 10 56 Q 120 -10 230 56"
+                fill="none"
+                stroke="#1a1410"
+                stroke-width="1"
+                opacity="0.25"
+                stroke-dasharray="2 4"></path>
+              {
+                [10, 60, 110, 160, 210].map((x) => (
+                  <line
+                    x1={x}
+                    y1="56"
+                    x2={x}
+                    y2="60"
+                    stroke="#1a1410"
+                    opacity="0.4"
+                    stroke-width="1"
+                  />
+                ))
+              }
               <circle cx="120" cy="14" r="14" fill="url(#sunG)"></circle>
               <defs>
                 <radialGradient id="sunG">
@@ -155,51 +201,94 @@ import Layout from '../layouts/Layout.astro';
               </defs>
             </svg>
           </div>
-          <div class="font-mono text-[11px] tracking-[0.18em] text-ink/45 font-semibold">01</div>
-          <h3 class="m-0 font-display font-normal text-[28px] leading-[1.1] tracking-[-0.02em]">
-            <span class="en">We read the sky.</span><span class="de">Wir lesen den Himmel.</span>
-          </h3>
-          <p class="m-0 text-[14.5px] leading-[1.55] text-ink/70 text-pretty">
-            <span class="en">Hour-by-hour solar forecast for your roof — pitch, azimuth, kWp and shading included.</span
-            ><span class="de">Stündliche Solarprognose für dein Dach — Neigung, Ausrichtung, kWp und Verschattung inklusive.</span>
+          <div class="step-num">01</div>
+          <h3 class="step-h"
+            ><span class="en">We read the sky.</span><span class="de">Wir lesen den Himmel.</span></h3
+          >
+          <p class="step-p">
+            <span class="en"
+              >Hour-by-hour solar forecast for your roof — pitch, azimuth, kWp and shading included.</span
+            ><span class="de"
+              >Stündliche Solarprognose für dein Dach — Neigung, Ausrichtung, kWp und Verschattung
+              inklusive.</span
+            >
           </p>
         </div>
 
-        <div class="flex flex-col gap-4 min-h-[240px] p-8 pb-9 bg-white rounded-[22px] border border-ink/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_24px_48px_-28px_rgba(20,16,30,0.18)]">
-          <div class="w-full h-16">
+        <!-- Step 02 -->
+        <div class="step-card">
+          <div class="step-illus">
             <svg viewBox="0 0 240 64" width="100%" height="64" style="display:block">
-              <path d="M 0 30 C 30 38, 50 50, 80 48 S 130 22, 160 24 S 210 50, 240 42" fill="none" stroke="#1a1410" stroke-width="1.6"></path>
-              <path d="M 0 30 C 30 38, 50 50, 80 48 S 130 22, 160 24 S 210 50, 240 42 L 240 64 L 0 64 Z" fill="#1a1410" opacity="0.06"></path>
+              <path
+                d="M 0 30 C 30 38, 50 50, 80 48 S 130 22, 160 24 S 210 50, 240 42"
+                fill="none"
+                stroke="#1a1410"
+                stroke-width="1.6"></path>
+              <path
+                d="M 0 30 C 30 38, 50 50, 80 48 S 130 22, 160 24 S 210 50, 240 42 L 240 64 L 0 64 Z"
+                fill="#1a1410"
+                opacity="0.06"></path>
               <circle cx="160" cy="24" r="3.5" fill="#0f7a3a"></circle>
             </svg>
           </div>
-          <div class="font-mono text-[11px] tracking-[0.18em] text-ink/45 font-semibold">02</div>
-          <h3 class="m-0 font-display font-normal text-[28px] leading-[1.1] tracking-[-0.02em]">
-            <span class="en">We read the price.</span><span class="de">Wir lesen den Preis.</span>
-          </h3>
-          <p class="m-0 text-[14.5px] leading-[1.55] text-ink/70 text-pretty">
-            <span class="en">Dynamic spot tariffs (Tibber, aWATTar, Octopus) pulled fresh four times an hour.</span
-            ><span class="de">Dynamische Spot-Tarife (Tibber, aWATTar, Octopus) — viermal pro Stunde frisch geholt.</span>
+          <div class="step-num">02</div>
+          <h3 class="step-h"
+            ><span class="en">We read the price.</span><span class="de">Wir lesen den Preis.</span></h3
+          >
+          <p class="step-p">
+            <span class="en"
+              >Dynamic spot tariffs (Tibber, aWATTar, Octopus) pulled fresh four times an hour.</span
+            ><span class="de"
+              >Dynamische Spot-Tarife (Tibber, aWATTar, Octopus) — viermal pro Stunde frisch
+              geholt.</span
+            >
           </p>
         </div>
 
-        <div class="flex flex-col gap-4 min-h-[240px] p-8 pb-9 bg-white rounded-[22px] border border-ink/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_24px_48px_-28px_rgba(20,16,30,0.18)]">
-          <div class="w-full h-16">
+        <!-- Step 03 -->
+        <div class="step-card">
+          <div class="step-illus">
             <svg viewBox="0 0 240 64" width="100%" height="64" style="display:block">
-              {Array.from({ length: 24 }, (_, i) => (
-                <rect x={4 + i * 9.7} y={36} width={6} height={14} fill="#1a1410" opacity={i >= 11 && i <= 14 ? 0.85 : 0.12} rx={1} />
-              ))}
-              <path d="M 110 28 L 110 22 L 158 22 L 158 28" fill="none" stroke="#1a1410" stroke-width="1.4"></path>
-              <text x="134" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1a1410" letter-spacing="2">11–14</text>
+              {
+                Array.from({ length: 24 }, (_, i) => (
+                  <rect
+                    x={4 + i * 9.7}
+                    y={36}
+                    width={6}
+                    height={14}
+                    fill="#1a1410"
+                    opacity={i >= 11 && i <= 14 ? 0.85 : 0.12}
+                    rx={1}
+                  />
+                ))
+              }
+              <path
+                d="M 110 28 L 110 22 L 158 22 L 158 28"
+                fill="none"
+                stroke="#1a1410"
+                stroke-width="1.4"></path>
+              <text
+                x="134"
+                y="14"
+                text-anchor="middle"
+                font-family="JetBrains Mono, monospace"
+                font-size="9"
+                fill="#1a1410"
+                letter-spacing="2">11–14</text
+              >
             </svg>
           </div>
-          <div class="font-mono text-[11px] tracking-[0.18em] text-ink/45 font-semibold">03</div>
-          <h3 class="m-0 font-display font-normal text-[28px] leading-[1.1] tracking-[-0.02em]">
-            <span class="en">We pick the hour.</span><span class="de">Wir wählen die Stunde.</span>
-          </h3>
-          <p class="m-0 text-[14.5px] leading-[1.55] text-ink/70 text-pretty">
-            <span class="en">One window. Sunniest, cheapest, or balanced — your call. Slide for duration, done.</span
-            ><span class="de">Ein Fenster. Sonnigster, günstigster oder ausgewogener Modus — du entscheidest. Laufzeit-Slider, fertig.</span>
+          <div class="step-num">03</div>
+          <h3 class="step-h"
+            ><span class="en">We pick the hour.</span><span class="de">Wir wählen die Stunde.</span></h3
+          >
+          <p class="step-p">
+            <span class="en"
+              >One window. Sunniest, cheapest, or balanced — your call. Slide for duration, done.</span
+            ><span class="de"
+              >Ein Fenster. Sonnigster, günstigster oder ausgewogener Modus — du entscheidest.
+              Laufzeit-Slider, fertig.</span
+            >
           </p>
         </div>
       </div>
@@ -207,60 +296,77 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- ── PRIVACY ── -->
-  <section class="bg-ink text-cream py-[140px] px-20 font-sans max-[900px]:py-[72px] max-[900px]:px-[22px]" id="privacy">
-    <div class="max-w-[1240px] mx-auto">
-      <div class="grid grid-cols-2 gap-20 items-start mb-16 max-[900px]:grid-cols-1 max-[900px]:gap-5 max-[900px]:mb-8">
+  <section class="privacy" id="privacy">
+    <div class="privacy-inner">
+      <div class="privacy-header">
         <div>
-          <div class="font-mono text-[11px] tracking-[0.22em] text-cream/55 font-medium">
+          <div class="eyebrow eyebrow-light">
             <span class="en">PRIVACY</span><span class="de">DATENSCHUTZ</span>
           </div>
-          <h2 class="mt-4 mb-0 font-display font-normal text-[clamp(42px,4.4vw,64px)] leading-none tracking-[-0.03em] text-balance text-cream">
+          <h2 class="section-h2 section-h2-light">
             <span class="en">Runs on your phone.</span><span class="de">Läuft auf deinem Gerät.</span>
             <br />
-            <em class="not-italic font-light opacity-85"><span class="en">Stays on your phone.</span><span class="de">Bleibt auf deinem Gerät.</span></em>
+            <span class="section-h2-italic opacity-85"
+              ><span class="en">Stays on your phone.</span><span class="de"
+                >Bleibt auf deinem Gerät.</span
+              ></span
+            >
           </h2>
         </div>
-        <p class="text-[17px] leading-[1.55] text-cream/[0.72] m-0 max-w-[480px] text-pretty">
-          <span class="en">Wattlyzer is a Progressive Web App. Forecasts and prices are fetched directly from public APIs. Your roof setup never leaves the device. No account, no tracker, no analytics SDK.</span
-          ><span class="de">Wattlyzer ist eine Progressive Web App. Wetter und Preise kommen direkt aus öffentlichen APIs. Deine Dachkonfiguration verlässt das Gerät nicht. Kein Konto, kein Tracker, kein Analytics-SDK.</span>
+        <p class="section-sub section-sub-light">
+          <span class="en"
+            >Wattlyzer is a Progressive Web App. Forecasts and prices are fetched directly from
+            public APIs. Your roof setup never leaves the device. No account, no tracker, no
+            analytics SDK.</span
+          ><span class="de"
+            >Wattlyzer ist eine Progressive Web App. Wetter und Preise kommen direkt aus öffentlichen
+            APIs. Deine Dachkonfiguration verlässt das Gerät nicht. Kein Konto, kein Tracker, kein
+            Analytics-SDK.</span
+          >
         </p>
       </div>
 
-      <div class="grid grid-cols-4 gap-6 pt-10 border-t border-cream/[0.12] max-[900px]:grid-cols-1">
-        <div class="flex flex-col">
-          <div class="font-mono text-[10px] tracking-[0.22em] text-cream/45 font-semibold mb-3">· 01</div>
-          <h4 class="m-0 mb-2 font-display font-normal text-[22px] leading-[1.15] tracking-[-0.01em] text-cream">
-            <span class="en">No account</span><span class="de">Kein Konto</span>
-          </h4>
-          <p class="m-0 text-[13.5px] leading-[1.55] text-cream/[0.72] text-pretty">
+      <div class="privacy-bullets">
+        <div class="privacy-bullet">
+          <div class="bullet-num">· 01</div>
+          <h4 class="bullet-h"><span class="en">No account</span><span class="de">Kein Konto</span></h4>
+          <p class="bullet-p">
             <span class="en">Configure your roof, you're done. There is nothing to log into.</span
-            ><span class="de">Dach konfigurieren, fertig. Es gibt nichts, wo du dich einloggen müsstest.</span>
+            ><span class="de"
+              >Dach konfigurieren, fertig. Es gibt nichts, wo du dich einloggen müsstest.</span
+            >
           </p>
         </div>
-        <div class="flex flex-col">
-          <div class="font-mono text-[10px] tracking-[0.22em] text-cream/45 font-semibold mb-3">· 02</div>
-          <h4 class="m-0 mb-2 font-display font-normal text-[22px] leading-[1.15] tracking-[-0.01em] text-cream">
-            <span class="en">No tracking</span><span class="de">Kein Tracking</span>
-          </h4>
-          <p class="m-0 text-[13.5px] leading-[1.55] text-cream/[0.72] text-pretty">
+        <div class="privacy-bullet">
+          <div class="bullet-num">· 02</div>
+          <h4 class="bullet-h"
+            ><span class="en">No tracking</span><span class="de">Kein Tracking</span></h4
+          >
+          <p class="bullet-p">
             <span class="en">No analytics, no pixels, no cookies. Open the network tab and check.</span
-            ><span class="de">Keine Analytics, keine Pixel, keine Cookies. Network-Tab öffnen und nachsehen.</span>
+            ><span class="de"
+              >Keine Analytics, keine Pixel, keine Cookies. Network-Tab öffnen und nachsehen.</span
+            >
           </p>
         </div>
-        <div class="flex flex-col">
-          <div class="font-mono text-[10px] tracking-[0.22em] text-cream/45 font-semibold mb-3">· 03</div>
-          <h4 class="m-0 mb-2 font-display font-normal text-[22px] leading-[1.15] tracking-[-0.01em] text-cream">Local first</h4>
-          <p class="m-0 text-[13.5px] leading-[1.55] text-cream/[0.72] text-pretty">
+        <div class="privacy-bullet">
+          <div class="bullet-num">· 03</div>
+          <h4 class="bullet-h">Local first</h4>
+          <p class="bullet-p">
             <span class="en">Tariffs and forecasts cached on-device.</span
-            ><span class="de">Tarife und Prognosen lokal gecached.</span>
+            ><span class="de"
+              >Tarife und Prognosen lokal gecached.</span
+            >
           </p>
         </div>
-        <div class="flex flex-col">
-          <div class="font-mono text-[10px] tracking-[0.22em] text-cream/45 font-semibold mb-3">· 04</div>
-          <h4 class="m-0 mb-2 font-display font-normal text-[22px] leading-[1.15] tracking-[-0.01em] text-cream">Open source</h4>
-          <p class="m-0 text-[13.5px] leading-[1.55] text-cream/[0.72] text-pretty">
-            <span class="en">Source on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="underline underline-offset-[3px] opacity-80 hover:opacity-100 transition-opacity duration-200 text-current">GitHub</a>, MIT licensed. Read it, fork it, host it yourself.</span
-            ><span class="de">Quellcode auf <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="underline underline-offset-[3px] opacity-80 hover:opacity-100 transition-opacity duration-200 text-current">GitHub</a>, MIT-Lizenz. Lesen, forken, selbst hosten — alles erlaubt.</span>
+        <div class="privacy-bullet">
+          <div class="bullet-num">· 04</div>
+          <h4 class="bullet-h">Open source</h4>
+          <p class="bullet-p">
+            <span class="en">Source on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT licensed. Read it, fork it, host it yourself.</span
+            ><span class="de"
+              >Quellcode auf <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a>, MIT-Lizenz. Lesen, forken, selbst hosten — alles erlaubt.</span
+            >
           </p>
         </div>
       </div>
@@ -268,106 +374,229 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- ── FAQ ── -->
-  <section class="bg-warm text-ink py-[140px] px-20 font-sans max-[900px]:py-[72px] max-[900px]:px-[22px]" id="faq">
-    <div class="max-w-[920px] mx-auto">
-      <div class="mb-14">
-        <div class="font-mono text-[11px] tracking-[0.22em] text-ink/55 font-medium">FAQ</div>
-        <h2 class="mt-4 mb-0 font-display font-normal text-[clamp(42px,4.4vw,64px)] leading-none tracking-[-0.03em] text-balance">
-          <em class="not-italic font-light"><span class="en">Common questions.</span><span class="de">Häufige Fragen.</span></em>
+  <section class="faq" id="faq">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="section-h2">
+          <em class="section-h2-italic"
+            ><span class="en">Common questions.</span><span class="de">Häufige Fragen.</span></em
+          >
         </h2>
       </div>
 
-      <div class="flex flex-col">
-        {[
-          {
-            en: 'Which tariffs are supported?',
-            de: 'Welche Tarife werden unterstützt?',
-            aEn: 'Tibber, aWATTar, Octopus Germany, and any plan that publishes EPEX spot pricing. We do not yet support fixed-rate Stadtwerke contracts — there is nothing to optimize.',
-            aDe: 'Tibber, aWATTar, Octopus Deutschland und alle Tarife, die EPEX-Spotpreise veröffentlichen. Feste Stadtwerke-Verträge unterstützen wir noch nicht — da gibt es nichts zu optimieren.',
-          },
-          {
-            en: 'Do I need a smart meter?',
-            de: 'Brauche ich ein Smart Meter?',
-            aEn: 'No. Wattlyzer recommends a window — you start the appliance. We never touch your meter or your inverter.',
-            aDe: 'Nein. Wattlyzer empfiehlt nur ein Fenster — du startest das Gerät selbst. Wir greifen weder auf Zähler noch auf Wechselrichter zu.',
-          },
-          {
-            en: 'How accurate is the solar forecast?',
-            de: 'Wie genau ist die Solarprognose?',
-            aEn: 'We use Open-Meteo\'s hour-resolution irradiance model combined with your tilt, azimuth and shading profile. Within ~15% on clear days, looser on broken cloud.',
-            aDe: 'Wir nutzen das stundenscharfe Strahlungsmodell von Open-Meteo und kombinieren es mit deiner Neigung, Ausrichtung und Verschattung. Bei klarem Himmel ~15% Genauigkeit, bei wechselnden Wolken etwas lockerer.',
-          },
-          {
-            en: 'Is it really free?',
-            de: 'Ist es wirklich kostenlos?',
-            aEnHtml: true,
-            aDe: 'Ja. Keine Tarife, keine Upsells. Wenn du das Projekt unterstützen willst — Stern auf GitHub oder eine Postkarte.',
-          },
-          {
-            en: 'Why a PWA and not the App Store?',
-            de: 'Warum eine PWA und kein App Store?',
-            aEn: 'Because the App Store would slow shipping, take a cut, and demand an account system we do not need. The PWA installs in two taps from Safari or Chrome.',
-            aDe: 'Weil der App Store das Ausliefern verlangsamt, eine Provision nimmt und einen Account-Zwang bedeutet, den wir nicht brauchen. Die PWA installiert sich in zwei Taps aus Safari oder Chrome.',
-          },
-        ].map((item, idx) => (
-          <div class="faq-item border-t border-ink/[0.14]" data-open="false">
-            <button class="faq-q w-full py-[26px] border-none bg-transparent cursor-pointer flex justify-between items-center gap-6 text-left">
-              <span class="font-display font-normal text-[22px] leading-[1.25] tracking-[-0.01em] text-ink">
-                <span class="en">{item.en}</span>
-                <span class="de">{item.de}</span>
-              </span>
-              <span class="faq-icon w-7 h-7 rounded-full shrink-0 bg-ink/[0.06] inline-flex items-center justify-center">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <path d="M12 5v14M5 12h14"></path>
-                </svg>
-              </span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner pb-7 pr-16 max-[900px]:pr-0 text-[15px] leading-[1.6] text-ink/[0.72] text-pretty">
-                {item.aEnHtml ? (
-                  <span class="en">Yes. No tier, no upsell. If you want to support the project, star it on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="underline underline-offset-[3px] opacity-80 hover:opacity-100 transition-opacity duration-200 text-current">GitHub</a> or send a postcard.</span>
-                ) : (
-                  <span class="en">{item.aEn}</span>
-                )}
-                <span class="de">{item.aDe}</span>
-              </div>
+      <div class="faq-list">
+        <!-- item 1 -->
+        <div class="faq-item" data-open="false">
+          <button class="faq-q">
+            <span class="faq-q-text">
+              <span class="en">Which tariffs are supported?</span>
+              <span class="de">Welche Tarife werden unterstützt?</span>
+            </span>
+            <span class="faq-icon">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <span class="en"
+                >Tibber, aWATTar, Octopus Germany, and any plan that publishes EPEX spot pricing. We
+                do not yet support fixed-rate Stadtwerke contracts — there is nothing to optimize.</span
+              ><span class="de"
+                >Tibber, aWATTar, Octopus Deutschland und alle Tarife, die EPEX-Spotpreise
+                veröffentlichen. Feste Stadtwerke-Verträge unterstützen wir noch nicht — da gibt es
+                nichts zu optimieren.</span
+              >
             </div>
           </div>
-        ))}
-        <div class="border-t border-ink/[0.14] h-0"></div>
+        </div>
+
+        <!-- item 2 -->
+        <div class="faq-item" data-open="false">
+          <button class="faq-q">
+            <span class="faq-q-text">
+              <span class="en">Do I need a smart meter?</span>
+              <span class="de">Brauche ich ein Smart Meter?</span>
+            </span>
+            <span class="faq-icon">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <span class="en"
+                >No. Wattlyzer recommends a window — you start the appliance. We never touch your
+                meter or your inverter.</span
+              ><span class="de"
+                >Nein. Wattlyzer empfiehlt nur ein Fenster — du startest das Gerät selbst. Wir
+                greifen weder auf Zähler noch auf Wechselrichter zu.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- item 3 -->
+        <div class="faq-item" data-open="false">
+          <button class="faq-q">
+            <span class="faq-q-text">
+              <span class="en">How accurate is the solar forecast?</span>
+              <span class="de">Wie genau ist die Solarprognose?</span>
+            </span>
+            <span class="faq-icon">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <span class="en"
+                >We use Open-Meteo's hour-resolution irradiance model combined with your tilt, azimuth
+                and shading profile. Within ~15% on clear days, looser on broken cloud.</span
+              ><span class="de"
+                >Wir nutzen das stundenscharfe Strahlungsmodell von Open-Meteo und kombinieren es mit
+                deiner Neigung, Ausrichtung und Verschattung. Bei klarem Himmel ~15% Genauigkeit, bei
+                wechselnden Wolken etwas lockerer.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- item 4 -->
+        <div class="faq-item" data-open="false">
+          <button class="faq-q">
+            <span class="faq-q-text">
+              <span class="en">Is it really free?</span>
+              <span class="de">Ist es wirklich kostenlos?</span>
+            </span>
+            <span class="faq-icon">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <span class="en"
+                >Yes. No tier, no upsell. If you want to support the project, star it on <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> or
+                send a postcard.</span
+              ><span class="de"
+                >Ja. Keine Tarife, keine Upsells. Wenn du das Projekt unterstützen willst — Stern auf
+                <a href="https://github.com/F1nal04/wattlyzer-app" target="_blank" rel="noopener" class="inline-link">GitHub</a> oder eine Postkarte.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- item 5 -->
+        <div class="faq-item" data-open="false">
+          <button class="faq-q">
+            <span class="faq-q-text">
+              <span class="en">Why a PWA and not the App Store?</span>
+              <span class="de">Warum eine PWA und kein App Store?</span>
+            </span>
+            <span class="faq-icon">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              <span class="en"
+                >Because the App Store would slow shipping, take a cut, and demand an account system
+                we do not need. The PWA installs in two taps from Safari or Chrome.</span
+              ><span class="de"
+                >Weil der App Store das Ausliefern verlangsamt, eine Provision nimmt und einen
+                Account-Zwang bedeutet, den wir nicht brauchen. Die PWA installiert sich in zwei Taps
+                aus Safari oder Chrome.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-border-bottom"></div>
       </div>
     </div>
   </section>
 
   <!-- ── FOOTER ── -->
-  <footer class="bg-dark text-cream py-20 px-20 pb-10 font-sans max-[900px]:py-12 max-[900px]:px-[22px] max-[900px]:pb-8">
-    <div class="max-w-[1240px] mx-auto">
-      <div class="grid grid-cols-[1.2fr_1fr_1fr] gap-10 mb-14 max-[900px]:grid-cols-2 max-[900px]:gap-6 max-[480px]:grid-cols-1">
-        <div class="max-[900px]:col-span-2 max-[480px]:col-span-1">
-          <div class="font-display text-[28px] font-normal tracking-[-0.01em]">Wattlyzer</div>
-          <p class="mt-2 mb-0 font-display italic font-light text-[16px] text-cream/55">
-            <span class="en">Made in Berlin for German rooftops.</span><span class="de">Made in Berlin, für deutsche Dächer.</span>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Wattlyzer</div>
+          <p class="footer-tagline">
+            <span class="en">Made in Berlin for German rooftops.</span><span class="de"
+              >Made in Berlin, für deutsche Dächer.</span
+            >
           </p>
         </div>
-        <div class="flex flex-col gap-[10px]">
-          <a href="https://github.com/F1nal04/wattlyzer-app" class="text-cream/70 text-[13px] no-underline hover:text-cream transition-colors duration-200" target="_blank" rel="noopener">GitHub</a>
+        <div class="footer-links">
+          <a href="https://github.com/F1nal04/wattlyzer-app" class="footer-link" target="_blank" rel="noopener">GitHub</a>
         </div>
-        <div class="flex flex-col gap-[10px]">
-          <a href="#privacy" class="text-cream/70 text-[13px] no-underline hover:text-cream transition-colors duration-200">
-            <span class="en">Privacy</span><span class="de">Datenschutz</span>
-          </a>
-          <a href="/impressum" class="text-cream/70 text-[13px] no-underline hover:text-cream transition-colors duration-200">Impressum</a>
+        <div class="footer-links">
+          <a href="#privacy" class="footer-link"
+            ><span class="en">Privacy</span><span class="de">Datenschutz</span></a
+          >
+          <a href="/impressum" class="footer-link">Impressum</a>
         </div>
       </div>
 
-      <div class="pt-7 border-t border-cream/[0.12] flex justify-between items-center font-mono text-[11px] tracking-[0.1em] text-cream/45">
-        <span>
-          <span class="en">© 2026 Wattlyzer. MIT licensed.</span><span class="de">© 2026 Wattlyzer. MIT-Lizenz.</span>
-        </span>
-        <div class="inline-flex items-center gap-3">
-          <button class="footer-lang-btn bg-transparent border-none cursor-pointer text-cream/40 font-mono text-[11px] tracking-[0.1em] font-medium hover:text-cream transition-colors duration-200" data-l="en" id="footer-lang-en">EN</button>
+      <div class="footer-bottom">
+        <span class="footer-copy"
+          ><span class="en">© 2026 Wattlyzer. MIT licensed.</span><span class="de"
+            >© 2026 Wattlyzer. MIT-Lizenz.</span
+          ></span
+        >
+        <div class="footer-lang">
+          <button class="footer-lang-btn" data-l="en" id="footer-lang-en">EN</button>
           <span>·</span>
-          <button class="footer-lang-btn bg-transparent border-none cursor-pointer text-cream/40 font-mono text-[11px] tracking-[0.1em] font-medium hover:text-cream transition-colors duration-200" data-l="de" id="footer-lang-de">DE</button>
+          <button class="footer-lang-btn" data-l="de" id="footer-lang-de">DE</button>
         </div>
       </div>
     </div>
@@ -375,32 +604,935 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- ── MOBILE MENU SHEET ── -->
   <div id="mob-sheet" class="mob-sheet" aria-hidden="true">
-    <div class="absolute inset-0 bg-black/40" id="mob-overlay"></div>
-    <div
-      class="mob-sheet-content relative z-[1] mt-16 w-[calc(100%-32px)] max-w-[440px] rounded-[22px] px-[22px] py-3 pb-[22px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-colors duration-[400ms]"
-      id="mob-sheet-content"
-    >
-      <div class="flex justify-end mb-1">
-        <button class="w-8 h-8 rounded-full bg-transparent border-none cursor-pointer text-current inline-flex items-center justify-center" id="mob-sheet-close" aria-label="Close">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <div class="mob-sheet-overlay" id="mob-overlay"></div>
+    <div class="mob-sheet-content" id="mob-sheet-content">
+      <div class="mob-sheet-close-row">
+        <button class="mob-sheet-close" id="mob-sheet-close" aria-label="Close">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
             <path d="M6 6l12 12M18 6L6 18"></path>
           </svg>
         </button>
       </div>
-      <a href="#how" class="mob-nav-link block py-[14px] font-sans text-[18px] font-medium text-current no-underline border-t border-ink/10" id="mob-link-how">
-        <span class="en">How it works</span><span class="de">So funktioniert's</span>
-      </a>
-      <a href="#privacy" class="mob-nav-link block py-[14px] font-sans text-[18px] font-medium text-current no-underline border-t border-ink/10" id="mob-link-privacy">
-        <span class="en">Privacy</span><span class="de">Datenschutz</span>
-      </a>
-      <a href="#faq" class="mob-nav-link block py-[14px] font-sans text-[18px] font-medium text-current no-underline border-t border-ink/10" id="mob-link-faq">FAQ</a>
-      <a href="/impressum" class="mob-nav-link block py-[14px] font-sans text-[18px] font-medium text-current no-underline border-t border-ink/10" id="mob-link-imp">Impressum</a>
-      <a href="#install" class="mob-cta block mt-4 px-[18px] py-[14px] rounded-full text-center bg-ink text-cream font-sans text-[14px] font-semibold no-underline" id="mob-cta">
-        <span class="en">Install PWA</span><span class="de">PWA installieren</span>
-      </a>
+      <a href="#how" class="mob-nav-link" id="mob-link-how"
+        ><span class="en">How it works</span><span class="de">So funktioniert's</span></a
+      >
+      <a href="#privacy" class="mob-nav-link" id="mob-link-privacy"
+        ><span class="en">Privacy</span><span class="de">Datenschutz</span></a
+      >
+      <a href="#faq" class="mob-nav-link" id="mob-link-faq">FAQ</a>
+      <a href="/impressum" class="mob-nav-link" id="mob-link-imp">Impressum</a>
+      <a href="#install" class="mob-cta" id="mob-cta"
+        ><span class="en">Install PWA</span><span class="de">PWA installieren</span></a
+      >
     </div>
   </div>
 </Layout>
+
+<style>
+  /* ── Variables & reset ── */
+  :root {
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ink: #1a1410;
+    --cream: #fff8e7;
+    --bg-warm: #f5f1ea;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: color 1200ms ease;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: color 1200ms ease;
+  }
+  .nav-div {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: currentColor;
+    opacity: 0.2;
+    flex-shrink: 0;
+  }
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 4px;
+    transition: color 1200ms ease, opacity 200ms;
+    color: inherit;
+    opacity: 0.82;
+  }
+  .nav-link:hover {
+    opacity: 1;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .nav-mob-right {
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: background 1200ms ease, border-color 1200ms ease;
+  }
+  .nav[data-sky-mode='light'] .lang-toggle {
+    background: rgba(26, 20, 16, 0.06);
+    border-color: rgba(26, 20, 16, 0.1);
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: inherit;
+    opacity: 0.5;
+    font-weight: 500;
+    transition: opacity 200ms;
+  }
+  .lang-btn.active,
+  .lang-btn:focus-visible {
+    opacity: 1;
+    font-weight: 700;
+  }
+  .lang-sep {
+    opacity: 0.3;
+    font-size: 10px;
+  }
+  .nav-cta {
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1410;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transition: background 1200ms ease, color 1200ms ease;
+    white-space: nowrap;
+  }
+  .nav[data-sky-mode='light'] .nav-cta {
+    background: #1a1410;
+    color: #fff8e7;
+  }
+  .mob-ham {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 1200ms ease, border-color 1200ms ease;
+  }
+  .nav[data-sky-mode='light'] .mob-ham {
+    background: rgba(26, 20, 16, 0.06);
+    border-color: rgba(26, 20, 16, 0.1);
+  }
+
+  /* sky-mode nav colors */
+  .nav[data-sky-mode='dark'] {
+    color: rgba(255, 245, 230, 0.85);
+  }
+  .nav[data-sky-mode='dark'] .nav-logo {
+    color: #fff;
+  }
+  .nav[data-sky-mode='light'] {
+    color: rgba(26, 20, 16, 0.7);
+  }
+  .nav[data-sky-mode='light'] .nav-logo {
+    color: #1a1410;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--sky-c1) 0%, var(--sky-c2) 55%, var(--sky-c3) 100%);
+    transition:
+      --sky-c1 1600ms ease,
+      --sky-c2 1600ms ease,
+      --sky-c3 1600ms ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-sky {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-sun {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff7d6 0%, #ffd86b 45%, #ff9a3c 75%, rgba(255, 154, 60, 0) 100%);
+    box-shadow: 0 0 120px 30px rgba(255, 216, 107, 0.4);
+    transition:
+      left 1600ms ease,
+      top 1600ms ease,
+      opacity 1600ms ease;
+    opacity: 0.96;
+  }
+  .hero-moon {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 35% 35%,
+      #fff7e0 0%,
+      #d8d0b2 70%,
+      #aaa088 100%
+    );
+    box-shadow: 0 0 80px 12px rgba(255, 247, 224, 0.32);
+    top: 110px;
+    transition:
+      left 1600ms ease,
+      opacity 1600ms ease;
+    opacity: 0;
+  }
+  .hero-cloud {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 6px 14px rgba(20, 16, 30, 0.18));
+    background:
+      radial-gradient(ellipse 30% 70% at 18% 70%, rgba(220, 215, 225, 0.7) 0%, #fff 55%, transparent 60%),
+      radial-gradient(ellipse 28% 90% at 38% 45%, #fff 0%, #fff 55%, transparent 60%),
+      radial-gradient(ellipse 22% 80% at 58% 35%, #fff 0%, #fff 55%, transparent 60%),
+      radial-gradient(ellipse 26% 80% at 76% 50%, #fff 0%, #fff 55%, transparent 60%),
+      radial-gradient(ellipse 20% 65% at 88% 70%, rgba(220, 215, 225, 0.7) 0%, #fff 55%, transparent 60%);
+    transition: opacity 1600ms ease;
+  }
+  .cloud-1 {
+    left: 6%;
+    top: 14%;
+    width: 216px;
+    height: 108px;
+    opacity: 0.55;
+  }
+  .cloud-2 {
+    left: 68%;
+    top: 22%;
+    width: 162px;
+    height: 81px;
+    opacity: 0.45;
+  }
+  .hero[data-sky-mode='dark'] .cloud-1 {
+    opacity: 0.35;
+  }
+  .hero[data-sky-mode='dark'] .cloud-2 {
+    opacity: 0.28;
+  }
+
+  .hero-hills {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 26%;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 100%, var(--sky-c3) 50%, transparent 51%),
+      radial-gradient(ellipse 80% 70% at 70% 100%, var(--sky-c3) 55%, transparent 56%),
+      radial-gradient(ellipse 60% 55% at 100% 100%, var(--sky-c3) 50%, transparent 51%);
+    transition: --sky-c3 1600ms ease;
+    filter: brightness(0.85) saturate(1.1);
+    opacity: 0.78;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 80px 100px;
+  }
+
+  .hero-text {
+    transition: color 1200ms ease;
+  }
+  .hero[data-sky-mode='dark'] .hero-text {
+    color: #fff8e7;
+  }
+  .hero[data-sky-mode='light'] .hero-text {
+    color: #1a1410;
+  }
+
+  /* Hour strip */
+  .hour-strip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: inherit;
+    margin-bottom: 18px;
+  }
+  .hour-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .hour-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.25;
+    transition: opacity 600ms ease;
+    display: inline-block;
+  }
+  .hour-dot.active {
+    opacity: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    opacity: 0.65;
+    margin-bottom: 16px;
+  }
+
+  .hero-h1 {
+    margin: 0 0 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(56px, 6.1vw, 88px);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+    color: inherit;
+  }
+  .hero-h1b {
+    font-style: italic;
+    font-weight: 300;
+    opacity: 0.92;
+  }
+
+  .hero-sub {
+    margin: 26px 0 0;
+    max-width: 480px;
+    font-size: 17px;
+    line-height: 1.55;
+    opacity: 0.82;
+    text-wrap: pretty;
+  }
+
+  .hero-cta-row {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 26px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1410;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 12px 32px rgba(20, 16, 30, 0.28);
+    transition: background 1200ms ease, color 1200ms ease;
+    white-space: nowrap;
+  }
+  .hero[data-sky-mode='light'] .hero-cta-btn {
+    background: #1a1410;
+    color: #fff8e7;
+  }
+  .hero-cta-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+
+  /* Scroll cue */
+  .hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    opacity: 0.55;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    z-index: 5;
+    transition: color 1200ms ease;
+  }
+  .hero[data-sky-mode='dark'] .hero-scroll {
+    color: rgba(255, 245, 230, 0.55);
+  }
+  .hero[data-sky-mode='light'] .hero-scroll {
+    color: rgba(26, 20, 16, 0.45);
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 32px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how {
+    background: #f5f1ea;
+    color: #1a1410;
+    padding: 140px 80px;
+    font-family: var(--font-sans);
+  }
+  .how-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .how-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: rgba(26, 20, 16, 0.55);
+    font-weight: 500;
+  }
+  .eyebrow-light {
+    color: rgba(255, 248, 231, 0.55);
+  }
+
+  .section-h2 {
+    margin: 16px 0 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(42px, 4.4vw, 64px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .section-h2-light {
+    color: #fff8e7;
+  }
+  .section-h2-italic {
+    font-style: italic;
+    font-weight: 300;
+  }
+  .opacity-85 {
+    opacity: 0.85;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(26, 20, 16, 0.72);
+    margin: 0;
+    max-width: 460px;
+    text-wrap: pretty;
+  }
+  .section-sub-light {
+    color: rgba(255, 248, 231, 0.72);
+    max-width: 480px;
+  }
+
+  .step-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .step-card {
+    padding: 32px 28px 36px;
+    background: #fff;
+    border-radius: 22px;
+    border: 1px solid rgba(26, 20, 16, 0.06);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 24px 48px -28px rgba(20, 16, 30, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 240px;
+  }
+  .step-illus {
+    width: 100%;
+    height: 64px;
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: rgba(26, 20, 16, 0.45);
+    font-weight: 600;
+  }
+  .step-h {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .step-p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: rgba(26, 20, 16, 0.7);
+    text-wrap: pretty;
+  }
+
+  /* ── PRIVACY ── */
+  .privacy {
+    background: #1a1410;
+    color: #fff8e7;
+    padding: 140px 80px;
+    font-family: var(--font-sans);
+  }
+  .privacy-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .privacy-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 64px;
+  }
+  .privacy-bullets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 248, 231, 0.12);
+  }
+  .privacy-bullet {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .bullet-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: rgba(255, 248, 231, 0.45);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .bullet-h {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #fff8e7;
+  }
+  .bullet-p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 248, 231, 0.72);
+    text-wrap: pretty;
+  }
+
+  /* ── FAQ ── */
+  .faq {
+    background: #f5f1ea;
+    color: #1a1410;
+    padding: 140px 80px;
+    font-family: var(--font-sans);
+  }
+  .faq-inner {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .faq-header {
+    margin-bottom: 56px;
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .faq-item {
+    border-top: 1px solid rgba(26, 20, 16, 0.14);
+  }
+  .faq-border-bottom {
+    border-top: 1px solid rgba(26, 20, 16, 0.14);
+    height: 0;
+  }
+  .faq-q {
+    width: 100%;
+    padding: 26px 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    text-align: left;
+  }
+  .faq-q-text {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #1a1410;
+  }
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: rgba(26, 20, 16, 0.06);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 220ms ease;
+  }
+  .faq-item[data-open='true'] .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 240ms ease;
+  }
+  .faq-item[data-open='true'] .faq-a {
+    max-height: 300px;
+  }
+  .faq-a-inner {
+    padding-bottom: 28px;
+    padding-right: 60px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(26, 20, 16, 0.72);
+    text-wrap: pretty;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #0f0c0a;
+    color: #fff8e7;
+    padding: 80px 80px 40px;
+    font-family: var(--font-sans);
+  }
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 56px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .footer-tagline {
+    margin: 8px 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    color: rgba(255, 248, 231, 0.55);
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-link {
+    color: rgba(255, 248, 231, 0.7);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 200ms;
+  }
+  .footer-link:hover {
+    color: #fff8e7;
+  }
+
+  .inline-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
+    opacity: 0.8;
+    transition: opacity 200ms;
+  }
+  .inline-link:hover {
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 248, 231, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255, 248, 231, 0.45);
+  }
+  .footer-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-lang-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 248, 231, 0.4);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: color 200ms;
+  }
+  .footer-lang-btn.active {
+    color: #fff8e7;
+    font-weight: 700;
+  }
+
+  /* ── MOBILE MENU SHEET ── */
+  .mob-sheet {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mob-sheet[aria-hidden='false'] {
+    display: flex;
+  }
+  .mob-sheet-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .mob-sheet-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 64px;
+    width: calc(100% - 32px);
+    max-width: 440px;
+    background: #fff8e7;
+    border-radius: 22px;
+    padding: 12px 22px 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transition: background 400ms ease;
+  }
+  .mob-sheet-content[data-sky-mode='dark'] {
+    background: #1a1410;
+    color: #fff8e7;
+  }
+  .mob-sheet-close-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+  .mob-sheet-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mob-nav-link {
+    display: block;
+    padding: 14px 0;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    color: inherit;
+    text-decoration: none;
+    border-top: 1px solid rgba(26, 20, 16, 0.1);
+  }
+  .mob-sheet-content[data-sky-mode='dark'] .mob-nav-link {
+    border-top-color: rgba(255, 245, 230, 0.12);
+  }
+  .mob-cta {
+    display: block;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    text-align: center;
+    background: #1a1410;
+    color: #fff8e7;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .mob-sheet-content[data-sky-mode='dark'] .mob-cta {
+    background: #fff8e7;
+    color: #1a1410;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-left .nav-link,
+    .nav-left .nav-div {
+      display: none;
+    }
+    .nav-right {
+      display: none;
+    }
+    .nav-mob-right {
+      display: flex;
+    }
+    .hero-content {
+      padding: 80px 22px 60px;
+    }
+    .hero-h1 {
+      font-size: clamp(44px, 13vw, 64px);
+    }
+    .hero-sub {
+      font-size: 15.5px;
+    }
+    .how {
+      padding: 72px 22px;
+    }
+    .how-header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .step-cards {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .privacy {
+      padding: 72px 22px;
+    }
+    .privacy-header {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .privacy-bullets {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .faq {
+      padding: 72px 22px;
+    }
+    .faq-a-inner {
+      padding-right: 0;
+    }
+    .footer {
+      padding: 48px 22px 32px;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-cta-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+</style>
 
 <script>
   // ── Sky theme ──
