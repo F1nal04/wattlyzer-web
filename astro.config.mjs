@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://wattlyzer.de",
   output: "static",
+  prefetch: { prefetchAll: true },
   integrations: [sitemap()],
   i18n: {
     defaultLocale: "en",

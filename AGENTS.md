@@ -34,7 +34,7 @@ Use `shadcn` components where applicable
 
 ## Architecture
 
-Fresh Astro 6.x project with no framework integrations (no React/Vue/Svelte). Uses TypeScript in strict mode and plain CSS.
+Static Astro 6.x site (`output: "static"`) with no framework integrations (no React/Vue/Svelte). Uses TypeScript in strict mode and plain CSS. Production domain is `wattlyzer.de`; the PWA lives on `pwa.wattlyzer.de`.
 
 **src/ layout:**
 
@@ -43,8 +43,19 @@ Fresh Astro 6.x project with no framework integrations (no React/Vue/Svelte). Us
 - `components/` — reusable `.astro` components
 - `assets/` — imported static assets (processed by Astro's build pipeline)
 - `public/` — files served as-is (not processed)
+- `styles/` — plain CSS: `global.css` (reset, variables), `index.css` (landing page), `legal.css` (legal page)
 
 Astro component syntax uses a frontmatter block (`---`) for server-side TypeScript, followed by the template. Components do not ship JavaScript to the client by default.
+
+### i18n routing
+
+English lives at `/` (no prefix), German at `/de/` — Astro's `prefixDefaultLocale: false` mode. There is no runtime language toggle; switching language means navigating to the other URL. Each page file has one language hardcoded into it.
+
+When adding a new page, always create both `src/pages/<slug>.astro` and `src/pages/de/<slug>.astro`.
+
+### Font system
+
+Fonts are downloaded at build time via `astro.config.mjs` and exposed as CSS variables (`--font-dm-sans`, `--font-fraunces`, `--font-jetbrains-mono`). Reference them in CSS as `var(--font-dm-sans)` — never use Google Fonts URLs.
 
 ## MCP Servers
 
