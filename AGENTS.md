@@ -2,11 +2,20 @@
 
 This file provides guidance to AI Agents when working with code in this repository.
 
-## Git
+## Git Commits
 
-commit should follow the conventional commits with scope scheme.
+Use [Conventional Commits](https://www.conventionalcommits.org/) with a scope.
 
-`feat(ui): added loading skeletons`
+**Format:** `<type>(<scope>): <description>`
+
+**Examples:**
+
+- `feat(ui): add dark mode toggle`
+- `fix(auth): handle expired token edge case`
+- `chore(deps): bump react to v19`
+- `refactor(api): simplify error handling middleware`
+
+Do not add `Co-authored-by` trailers to commits.
 
 ## Commands
 
