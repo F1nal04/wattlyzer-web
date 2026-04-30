@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# wattlyzer-web
 
-```sh
-bun create astro@latest -- --template basics
+Marketing website for [Wattlyzer](https://github.com/F1nal04/wattlyzer-app) — a PWA that reads the sun, the spot price, and your roof, then tells you the one best window today to run your dishwasher, heat pump, or wall box.
+
+Built with Astro 6, plain CSS, and no client-side framework. EN/DE bilingual, animated sky hero, SSR via Netlify.
+
+## Stack
+
+- [Astro 6](https://astro.build) — SSR, file-based routing
+- [@astrojs/netlify](https://docs.astro.build/en/guides/integrations-guide/netlify/) — deployment adapter
+- Fraunces · DM Sans · JetBrains Mono (Google Fonts)
+
+## Development
+
+Requires Node >= 22.12.0 and [bun](https://bun.sh).
+
+```bash
+bun install       # install dependencies
+bun dev           # dev server at localhost:4321
+bun build         # production build → dist/
+bun preview       # preview production build locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Deployment
 
-## 🚀 Project Structure
+Connect the repo to Netlify. It auto-detects Astro, runs `bun run build`, and publishes `dist/`.
 
-Inside of your Astro project, you'll see the following folders and files:
+## App
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The PWA this site promotes lives at [F1nal04/wattlyzer-app](https://github.com/F1nal04/wattlyzer-app).
