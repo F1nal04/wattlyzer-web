@@ -1,23 +1,78 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Wattlyzer · Run it when the sky says so.',
+  description = 'Wattlyzer reads the sun, the spot price, and your roof — then tells you the one best window today to start the dishwasher, the heat pump, the wall box.',
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @property --sky-c1 {
+    syntax: '<color>';
+    initial-value: #bde4ff;
+    inherits: true;
+  }
+  @property --sky-c2 {
+    syntax: '<color>';
+    initial-value: #fef0c7;
+    inherits: true;
+  }
+  @property --sky-c3 {
+    syntax: '<color>';
+    initial-value: #fcd28a;
+    inherits: true;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #1a1410;
+    background: #f5f1ea;
+  }
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Bilingual toggle — driven by data-lang on <html> */
+  [data-lang='de'] .en {
+    display: none;
+  }
+  [data-lang='en'] .de {
+    display: none;
+  }
 </style>
