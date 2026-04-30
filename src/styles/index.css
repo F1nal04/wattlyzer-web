@@ -93,8 +93,8 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     color: inherit;
-    opacity: 0.5;
-    font-weight: 500;
+    opacity: 0.45;
+    font-weight: 700;
     transition: opacity 200ms;
     text-decoration: none;
     display: inline-block;
@@ -102,7 +102,6 @@
   .lang-btn.active,
   .lang-btn:focus-visible {
     opacity: 1;
-    font-weight: 700;
   }
   .lang-sep {
     opacity: 0.3;
@@ -110,6 +109,8 @@
   }
   .nav-cta {
     padding: 10px 16px;
+    min-width: 158px;
+    text-align: center;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.95);
     color: #1a1410;
