@@ -134,98 +134,6 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Right: phone mock -->
-      <div class="hero-phone-col">
-        <div class="phone-tilt">
-          <div class="phone-frame">
-            <div id="phone-screen" class="phone-screen">
-              <!-- Sky bg -->
-              <div class="ps-sky">
-                <div id="ps-sun" class="ps-sun"></div>
-              </div>
-              <!-- Dynamic island -->
-              <div class="ps-island"></div>
-              <!-- Status bar -->
-              <div class="ps-status" id="ps-status">
-                <span class="ps-time">9:41</span>
-                <div class="ps-status-icons">
-                  <svg width="17" height="11" viewBox="0 0 19 12">
-                    <rect x="0" y="7.5" width="3.2" height="4.5" rx="0.7" fill="currentColor"
-                    ></rect>
-                    <rect x="4.8" y="5" width="3.2" height="7" rx="0.7" fill="currentColor"></rect>
-                    <rect x="9.6" y="2.5" width="3.2" height="9.5" rx="0.7" fill="currentColor"
-                    ></rect>
-                    <rect x="14.4" y="0" width="3.2" height="12" rx="0.7" fill="currentColor"
-                    ></rect>
-                  </svg>
-                  <svg width="25" height="12" viewBox="0 0 27 13">
-                    <rect
-                      x="0.5"
-                      y="0.5"
-                      width="23"
-                      height="12"
-                      rx="3.5"
-                      stroke="currentColor"
-                      stroke-opacity="0.35"
-                      fill="none"></rect>
-                    <rect x="2" y="2" width="20" height="9" rx="2" fill="currentColor"></rect>
-                    <path
-                      d="M25 4.5V8.5C25.8 8.2 26.5 7.2 26.5 6.5C26.5 5.8 25.8 4.8 25 4.5Z"
-                      fill="currentColor"
-                      opacity="0.4"></path>
-                  </svg>
-                </div>
-              </div>
-              <!-- App content -->
-              <div class="ps-content">
-                <div class="ps-app-nav" id="ps-app-nav">
-                  <span class="ps-app-title">Wattlyzer</span>
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                  >
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <circle cx="12" cy="12" r="9" stroke-dasharray="2 3"></circle>
-                  </svg>
-                </div>
-
-                <div id="ps-hour-chip" class="ps-hour-chip">07:00</div>
-
-                <div class="ps-main-card" id="ps-main-card">
-                  <div class="ps-card-eyebrow">
-                    <span class="en">BEST TIME TODAY</span><span class="de">BESTES FENSTER HEUTE</span>
-                  </div>
-                  <div id="ps-range" class="ps-card-time">11:00 – 13:00</div>
-                  <div class="ps-sep"></div>
-                  <div class="ps-bars">
-                    <div class="ps-bar-row">
-                      <span class="ps-bar-icon">☀</span>
-                      <div class="ps-bar-track">
-                        <div id="ps-solar-bar" class="ps-bar-fill ps-solar" style="width:78%"></div>
-                      </div>
-                      <span id="ps-solar-val" class="ps-bar-val">1.8 kWh</span>
-                    </div>
-                    <div class="ps-bar-row">
-                      <span class="ps-bar-icon">€</span>
-                      <div class="ps-bar-track">
-                        <div id="ps-price-bar" class="ps-bar-fill ps-price" style="width:62%"></div>
-                      </div>
-                      <span id="ps-price-val" class="ps-bar-val">10 ct</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Home bar -->
-              <div class="ps-home-bar" id="ps-home-bar"></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Scroll cue -->
@@ -994,13 +902,9 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 5;
     width: 100%;
-    max-width: 1400px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 100px 80px 80px;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: 40px;
+    padding: 120px 80px 100px;
   }
 
   .hero-text {
@@ -1145,213 +1049,6 @@ import Layout from '../layouts/Layout.astro';
     height: 32px;
     background: currentColor;
     opacity: 0.7;
-  }
-
-  /* Phone mock */
-  .hero-phone-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .phone-tilt {
-    transform: perspective(1400px) rotateY(-8deg) rotateX(2deg) translateY(-6px);
-  }
-  .phone-frame {
-    width: 320px;
-    height: 696px;
-    border-radius: 48px;
-    overflow: hidden;
-    background: #1a1410;
-    box-shadow:
-      0 60px 120px -20px rgba(20, 16, 30, 0.55),
-      0 12px 24px -6px rgba(20, 16, 30, 0.4),
-      inset 0 0 0 2px rgba(255, 255, 255, 0.06);
-  }
-  .phone-screen {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, var(--sky-c1) 0%, var(--sky-c2) 55%, var(--sky-c3) 100%);
-    transition:
-      --sky-c1 1600ms ease,
-      --sky-c2 1600ms ease,
-      --sky-c3 1600ms ease;
-  }
-  .ps-sky {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  .ps-sun {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #fff7d6 0%, #ffd86b 45%, #ff9a3c 75%, transparent 100%);
-    box-shadow: 0 0 50px 12px rgba(255, 216, 107, 0.35);
-    transition:
-      left 1600ms ease,
-      top 1600ms ease;
-  }
-  .ps-island {
-    position: absolute;
-    top: 11px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 126px;
-    height: 37px;
-    background: #000;
-    border-radius: 24px;
-    z-index: 50;
-  }
-  .ps-status {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 52px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 0 24px 7px;
-    z-index: 10;
-    transition: color 1600ms ease;
-  }
-  .ps-time {
-    font-family: -apple-system, 'SF Pro', system-ui;
-    font-weight: 590;
-    font-size: 15px;
-  }
-  .ps-status-icons {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .ps-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    padding: 58px 20px 32px;
-    z-index: 5;
-  }
-  .ps-app-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    transition: color 1600ms ease;
-  }
-  .ps-app-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .ps-hour-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    margin-bottom: 10px;
-    width: fit-content;
-    transition: color 1600ms ease;
-  }
-  .ps-main-card {
-    margin-top: auto;
-    background: rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 16px;
-    box-shadow: 0 8px 32px -4px rgba(20, 16, 30, 0.2);
-  }
-  .ps-card-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    color: rgba(26, 20, 16, 0.6);
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-  .ps-card-time {
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #1a1410;
-    line-height: 1.05;
-    margin-bottom: 12px;
-  }
-  .ps-sep {
-    height: 1px;
-    background: rgba(26, 20, 16, 0.1);
-    margin-bottom: 10px;
-  }
-  .ps-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-  .ps-bar-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .ps-bar-icon {
-    font-size: 12px;
-    width: 18px;
-    text-align: center;
-    flex-shrink: 0;
-    opacity: 0.85;
-  }
-  .ps-bar-track {
-    flex: 1;
-    height: 5px;
-    background: rgba(26, 20, 16, 0.1);
-    border-radius: 999px;
-    overflow: hidden;
-  }
-  .ps-bar-fill {
-    height: 100%;
-    border-radius: 999px;
-    transition: width 1200ms ease;
-  }
-  .ps-solar {
-    background: linear-gradient(90deg, #ffd86b, #ff9a3c);
-  }
-  .ps-price {
-    background: linear-gradient(90deg, #4ade80, #16a34a);
-  }
-  .ps-bar-val {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    color: rgba(26, 20, 16, 0.65);
-    min-width: 38px;
-    text-align: right;
-    flex-shrink: 0;
-  }
-  .ps-home-bar {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 5px;
-    border-radius: 100px;
-    transition: background 1600ms ease;
-    z-index: 20;
   }
 
   /* ── HOW IT WORKS ── */
@@ -1764,33 +1461,7 @@ import Layout from '../layouts/Layout.astro';
       display: flex;
     }
     .hero-content {
-      grid-template-columns: 1fr;
-      padding: 100px 22px 60px;
-      gap: 48px;
-    }
-    .hero-phone-col {
-      order: -1;
-    }
-    .phone-frame {
-      width: 244px;
-      height: 530px;
-      border-radius: 36px;
-    }
-    .phone-tilt {
-      transform: none;
-    }
-    .ps-island {
-      width: 96px;
-      height: 28px;
-    }
-    .ps-hour-chip {
-      font-size: 10px;
-    }
-    .ps-card-time {
-      font-size: 20px;
-    }
-    .ps-content {
-      padding: 44px 16px 24px;
+      padding: 80px 22px 60px;
     }
     .hero-h1 {
       font-size: clamp(44px, 13vw, 64px);
@@ -1906,20 +1577,6 @@ import Layout from '../layouts/Layout.astro';
     };
   }
 
-  // ── Phone mock data ──
-  const PHONE_DATA: Record<
-    number,
-    { range: string; solar: number; price: number; sVal: string; pVal: string }
-  > = {
-    7: { range: '11:00 – 13:00', solar: 78, price: 62, sVal: '1.8 kWh', pVal: '10 ct' },
-    10: { range: '11:00 – 14:00', solar: 90, price: 75, sVal: '2.3 kWh', pVal: '10 ct' },
-    13: { range: '13:00 – 15:00', solar: 92, price: 80, sVal: '2.1 kWh', pVal: '12 ct' },
-    16: { range: '16:00 – 18:00', solar: 68, price: 85, sVal: '1.4 kWh', pVal: '16 ct' },
-    18: { range: '18:00 – 20:00', solar: 38, price: 70, sVal: '0.6 kWh', pVal: '18 ct' },
-    20: { range: 'Morning · 09:00', solar: 8, price: 48, sVal: '0.1 kWh', pVal: '26 ct' },
-    22: { range: 'Morning · 09:00', solar: 5, price: 44, sVal: '—', pVal: '26 ct' },
-  };
-
   // ── State ──
   let hourIdx = 0;
   let currentSkyMode: 'dark' | 'light' = 'light';
@@ -1931,17 +1588,6 @@ import Layout from '../layouts/Layout.astro';
   const heroMoon = document.getElementById('hero-moon') as HTMLElement;
   const hourStripTime = document.getElementById('hour-strip-time')!;
   const hourDots = document.querySelectorAll<HTMLElement>('.hour-dot');
-  const phoneScreen = document.getElementById('phone-screen') as HTMLElement;
-  const psSun = document.getElementById('ps-sun') as HTMLElement;
-  const psStatus = document.getElementById('ps-status') as HTMLElement;
-  const psAppNav = document.getElementById('ps-app-nav') as HTMLElement;
-  const psHourChip = document.getElementById('ps-hour-chip')!;
-  const psRange = document.getElementById('ps-range')!;
-  const psSolarBar = document.getElementById('ps-solar-bar') as HTMLElement;
-  const psPriceBar = document.getElementById('ps-price-bar') as HTMLElement;
-  const psSolarVal = document.getElementById('ps-solar-val')!;
-  const psPriceVal = document.getElementById('ps-price-val')!;
-  const psHomeBar = document.getElementById('ps-home-bar') as HTMLElement;
 
   function updateSky(hour: number) {
     const t = skyTheme(hour);
@@ -1984,34 +1630,6 @@ import Layout from '../layouts/Layout.astro';
         dot.classList.remove('active');
       }
     });
-
-    // Phone screen
-    phoneScreen.style.setProperty('--sky-c1', c1);
-    phoneScreen.style.setProperty('--sky-c2', c2);
-    phoneScreen.style.setProperty('--sky-c3', c3);
-
-    const phoneColor = isDark ? '#fff8e7' : '#1a1410';
-    psStatus.style.color = phoneColor;
-    psAppNav.style.color = phoneColor;
-    psHourChip.style.color = phoneColor;
-    psHomeBar.style.background = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.25)';
-
-    if (showSun) {
-      psSun.style.display = 'block';
-      psSun.style.left = `calc(${sunX * 100}% - 35px)`;
-      psSun.style.top = `calc(${15 + sunY * 20}% - 35px)`;
-    } else {
-      psSun.style.display = 'none';
-    }
-
-    psHourChip.textContent = String(hour).padStart(2, '0') + ':00';
-
-    const d = PHONE_DATA[hour] || PHONE_DATA[7];
-    psRange.textContent = d.range;
-    psSolarBar.style.width = d.solar + '%';
-    psPriceBar.style.width = d.price + '%';
-    psSolarVal.textContent = d.sVal;
-    psPriceVal.textContent = d.pVal;
 
     // Mobile sheet sky mode
     const mobContent = document.getElementById('mob-sheet-content');
